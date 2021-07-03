@@ -17,14 +17,13 @@ jobs:
         environment-file: environment.yml
         python-version: 3.6
         auto-activate-base: false   
+    - run: |
+        export PATH="$PATH:/usr/share/miniconda/bin"
+        source .envrc
         
   R_setup:
-    needs: py_setup
     
     name: 'Setup R environment'
-    
-    env:
-        RENV_PATHS_ROOT: .local/share/renv
     
     runs-on: ubuntu-latest
     
@@ -33,7 +32,7 @@ jobs:
       with:
          r-version: '4.1.0'
 
-    - name: Initialize IR_kernel
+    - name: Install Packages
       shell: Rscript {0}
       run: |
         install.packages("MASS")
@@ -43,17 +42,23 @@ jobs:
         install.packages("parallel")
         install.packages("Rcpp")
         install.packages("IRkernel")
-        IRkernel::installspec()
-       
-  build:
+    
+  ir_kernel:
+  
     needs: [py_setup, R_setup]
+    name: 'Setup R environment'
+    
+    runs-on: ubuntu-latest
+    
+    - name: Initialize IR Kernel
+      run: R CMD BATCH IRkernel::installspec()
+      
+  build:
+    needs: [py_setup, R_setup, ir_kernel]
     
     runs-on: ubuntu-latest
     steps:
     - name: execute notebooks
       shell: bash -l {0}
-      run: |
-         export PATH="$PATH:/usr/share/miniconda/bin"
-         source .envrc
-         jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
+      run: jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
       
