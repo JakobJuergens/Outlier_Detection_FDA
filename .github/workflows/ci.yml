@@ -33,18 +33,20 @@ jobs:
       with:
          r-version: '4.1.0'
      
-    - name: Cache Renv packages
-      uses: actions/cache@v2
+    - name: Cache packages
+      uses: actions/cache@v1
       with:
-        path: ~/.local/share/renv
-        key: r-${{ hashFiles('renv.lock') }}
-        restore-keys: r-
-        
-    - name: Install packages
+        path: ${{ env.RENV_PATHS_ROOT }}
+        key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-renv-
+
+    - name: Restore packages
+      shell: Rscript {0}
       run: |
-         R -e 'install.packages("renv")'
-         R -e 'renv::restore()'
-            
+        if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+        renv::restore()
+        
     - name: Initialize IR_kernel
       shell: Rscript {0}
       run: IRkernel::installspec()
