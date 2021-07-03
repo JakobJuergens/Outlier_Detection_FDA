@@ -19,8 +19,9 @@ jobs:
         auto-activate-base: false   
     - run: |
         conda info --envs
+        conda activate student_project
         export PATH="$PATH:/usr/share/miniconda/bin"
-      
+        R -e "IRkernel::installspec()"
   build:
     needs: [py_setup]
     
@@ -28,5 +29,7 @@ jobs:
     steps:
     - name: execute notebooks
       shell: bash -l {0}
-      run: jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
+      run: |
+        conda activate student_project
+        jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
       
