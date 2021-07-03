@@ -34,7 +34,7 @@ jobs:
 
     - name: Install Packages
       run: | 
-        R -e "install.packages("IRkernel")"
+        R -e "install.packages('IRkernel')"
         R -e "IRkernel::installspec()"
         
   IR_setup:
