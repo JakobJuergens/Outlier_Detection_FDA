@@ -18,8 +18,8 @@ jobs:
         python-version: 3.6
         auto-activate-base: false   
     - run: |
+        conda info --envs
         export PATH="$PATH:/usr/share/miniconda/bin"
-        source .envrc
         
   R_setup:
     
