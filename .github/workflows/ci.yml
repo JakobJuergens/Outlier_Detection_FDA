@@ -63,7 +63,7 @@ jobs:
       run: IRkernel::installspec()
        
   build:
-    needs: [py_setup, R_setup, IR_Kernel]
+    needs: [py_setup, R_setup]
     
     runs-on: ubuntu-latest
     steps:
