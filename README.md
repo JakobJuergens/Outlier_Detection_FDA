@@ -19,7 +19,7 @@ Please ensure that a brief description of your project is included in the [READM
        width="109" height="20">
 </a>
 
-<a href="https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?filepath=shiny/shiny"
+<a href="https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/visual/"
     target="_parent">
     <img align="center"
        src="https://mybinder.org/badge_logo.svg"
