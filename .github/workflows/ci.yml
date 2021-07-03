@@ -35,7 +35,14 @@ jobs:
     steps:
         - name: execute installation script
           shell: bash -l {0}
-          run: Rscript IR_Kernel.R
+          run: |
+            R install.packages('IRkernel')
+            R IRkernel::installspec()
+            R install.packages('MASS')
+            R install.packages('tidyverse')
+            R install.packages('largeList')
+            R install.packages('parallel')
+            R install.packages('Rcpp')
        
   build:
     needs: [py_setup, R_setup, IR_Kernel]
