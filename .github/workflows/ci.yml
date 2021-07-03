@@ -33,9 +33,11 @@ jobs:
     
     name: 'Install IRKernel' 
     steps:
-      - run: |
-        pwd
-        Rscript CI_aux/IR_Kernel.R
+        - name: execute installation script
+          shell: bash -l {0}
+          run: |
+            pwd
+            Rscript CI_aux/IR_Kernel.R
        
   build:
     needs: [py_setup, R_setup, IR_Kernel]
