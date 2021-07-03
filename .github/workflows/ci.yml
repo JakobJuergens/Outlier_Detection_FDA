@@ -35,24 +35,8 @@ jobs:
     - name: Install Packages
       shell: Rscript {0}
       run: |
-        install.packages("MASS")
-        install.packages("tidyverse")
-        install.packages("shiny")
-        install.packages("largeList")
-        install.packages("parallel")
-        install.packages("Rcpp")
         install.packages("IRkernel")
-    
-  ir_kernel:
-  
-    needs: [py_setup, R_setup]
-    name: 'Initialize IR Kernel'
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Initialize IR Kernel
-      run: R -e "IRkernel::installspec()"
+        IRkernel::installspec()
       
   build:
     needs: [py_setup, R_setup, ir_kernel]
