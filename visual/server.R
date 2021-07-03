@@ -2,9 +2,9 @@ library(shiny)
 library(shinydashboard)
 library(tidyverse)
 
-function(input, output, session) {
+my_tibble <- readRDS(file = "data/shiny_tibble.rds")
 
-  my_tibble <- readRDS(file = "data/shiny_tibble.rds")
+function(input, output, session) {
     
   alphas <- reactive({
     tmp <- rep(0.1, times = dim(my_tibble)[1])
