@@ -6,13 +6,13 @@ This is the final project of the OSE data science course (summer semester 2021) 
 
 Please ensure that a brief description of your project is included in the [README.md](https://github.com/HumanCapitalAnalysis/template-course-project/blob/master/README.md), which provides a proper citation of your baseline article. Also, please set up the following badges that allow to easily access your project notebook.
 
-<a href="https://nbviewer.jupyter.org/github/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/blob/master/Sampling.ipynb"
+<a href="https://nbviewer.jupyter.org/github/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/blob/master/Project_Main.ipynb"
    target="_parent">
    <img align="center"
   src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.png"
       width="109" height="20">
 </a>
-<a href="https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?filepath=Sampling.ipynb"
+<a href="https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb"
     target="_parent">
     <img align="center"
        src="https://mybinder.org/badge_logo.svg"
