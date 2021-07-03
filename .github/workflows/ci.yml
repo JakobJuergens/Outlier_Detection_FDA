@@ -9,8 +9,7 @@ jobs:
         
     steps:
     - run: |
-        cd /home/runner/work/ose-data-science-course-projeect-JakobJuergens
-        pwd
+        ls
         conda env create -f environment.yml
     - uses: actions/checkout@v2
     - uses: conda-incubator/setup-miniconda@v2
