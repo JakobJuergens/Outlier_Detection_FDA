@@ -8,15 +8,11 @@ jobs:
     runs-on: ubuntu-latest
         
     steps:
-    - run: |
-        cd /home/runner/work/ose-data-science-course-projeect-JakobJuergens/ose-data-science-course-projeect-JakobJuergens
-        ls
-        conda env create -f environment.yml
     - uses: actions/checkout@v2
     - uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: student_project
-        environment-file: ./environment.yml
+        environment-file: environment.yml
         python-version: 3.6
         auto-activate-base: false
     - run: |
