@@ -6,7 +6,9 @@ jobs:
   py_setup:
 
     runs-on: ubuntu-latest
-    
+    env:
+        working-directory: /home/runner/work/ose-data-science-course-projeect-JakobJuergens
+        
     steps:
     - run: |
         pwd
