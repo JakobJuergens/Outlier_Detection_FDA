@@ -4,6 +4,8 @@ This is the final project of the OSE data science course (summer semester 2021) 
 
 ## Project overview
 
+This project was made possible by a cooperation with Daimler AG. The main focus is on outlier classification.
+
 Please ensure that a brief description of your project is included in the [README.md](https://github.com/HumanCapitalAnalysis/template-course-project/blob/master/README.md), which provides a proper citation of your baseline article. Also, please set up the following badges that allow to easily access your project notebook.
 
 <a href="https://nbviewer.jupyter.org/github/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/blob/master/Project_Main.ipynb"
@@ -19,12 +21,9 @@ Please ensure that a brief description of your project is included in the [READM
        width="109" height="20">
 </a>
 
-<a href="https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/visual/"
-    target="_parent">
-    <img align="center"
-       src="https://mybinder.org/badge_logo.svg"
-       width="109" height="20">
-</a>
+If you want to start the visualization click here:
+
+RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/visual/)
 
 ## Reproducibility
 
