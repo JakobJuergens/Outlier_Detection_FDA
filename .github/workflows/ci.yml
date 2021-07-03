@@ -46,13 +46,14 @@ jobs:
   ir_kernel:
   
     needs: [py_setup, R_setup]
-    name: 'Setup R environment'
+    name: 'Initialize IR Kernel'
     
     runs-on: ubuntu-latest
     
     steps:
     - name: Initialize IR Kernel
-      run: R CMD BATCH IRkernel::installspec()
+      shell: Rscript {0}
+      run: IRkernel::installspec()
       
   build:
     needs: [py_setup, R_setup, ir_kernel]
