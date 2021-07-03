@@ -50,6 +50,7 @@ jobs:
     
     runs-on: ubuntu-latest
     
+    steps:
     - name: Initialize IR Kernel
       run: R CMD BATCH IRkernel::installspec()
       
