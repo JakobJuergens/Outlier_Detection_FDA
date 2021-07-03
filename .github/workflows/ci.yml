@@ -22,27 +22,45 @@ jobs:
     
     name: 'Setup R environment'
     
+    env:
+        RENV_PATHS_ROOT: renv
+    
     steps:
     - uses: r-lib/actions/setup-r@v1
       with:
          r-version: '4.1.0'
-        
-  IR_Kernel:
-    needs: [py_setup, R_setup]
-    runs-on: ubuntu-latest
-    
-    name: 'Install IRKernel' 
-    steps:
-        - name: execute installation script
-          shell: bash -l {0}
-          run: |
-            R install.packages('IRkernel')
-            R IRkernel::installspec()
-            R install.packages('MASS')
-            R install.packages('tidyverse')
-            R install.packages('largeList')
-            R install.packages('parallel')
-            R install.packages('Rcpp')
+         
+    - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: |
+            while read -r cmd
+            do
+              eval sudo $cmd
+            done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+       
+    - name: Install dependencies
+        run: |
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("rcmdcheck")
+        shell: Rscript {0}
+     
+     - name: Cache packages
+        uses: actions/cache@v1
+        with:
+            path: ${{ env.RENV_PATHS_ROOT }}
+            key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-renv-
+
+    - name: Restore packages
+        shell: Rscript {0}
+        run: |
+            if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+            renv::restore()
+            
+    - name: Restore packages
+        shell: Rscript {0}
+        run: IRkernel::installspec()
        
   build:
     needs: [py_setup, R_setup, IR_Kernel]
