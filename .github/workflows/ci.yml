@@ -39,11 +39,11 @@ jobs:
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
        
     - name: Install dependencies
+      shell: Rscript {0}
       run: |
         remotes::install_deps(dependencies = TRUE)
         remotes::install_cran("rcmdcheck")
-      shell: Rscript {0}
-     
+      
      - name: Cache packages
        uses: actions/cache@v1
        with:
