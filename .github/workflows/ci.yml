@@ -17,9 +17,13 @@ jobs:
         environment-file: environment.yml
         python-version: 3.6
         auto-activate-base: false   
-    - run: |
+    - name: Conda Stuff
+      shell: bash -l {0}
+      run: |
         export PATH="$PATH:/usr/share/miniconda/bin"
+        conda activate student_project 
         R -e "IRkernel::installspec()"
+
   build:
     needs: [py_setup]
     
