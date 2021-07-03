@@ -33,30 +33,30 @@ jobs:
     - name: Install system dependencies
       if: runner.os == 'Linux'
       run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+         while read -r cmd
+         do
+           eval sudo $cmd
+         done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
        
     - name: Install dependencies
       shell: Rscript {0}
       run: |
-        remotes::install_deps(dependencies = TRUE)
-        remotes::install_cran("rcmdcheck")
+         remotes::install_deps(dependencies = TRUE)
+         remotes::install_cran("rcmdcheck")
       
-     - name: Cache packages
-       uses: actions/cache@v1
-       with:
-         path: ${{ env.RENV_PATHS_ROOT }}
-         key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-         restore-keys: |
-             ${{ runner.os }}-renv-
+    - name: Cache packages
+      uses: actions/cache@v1
+      with:
+        path: ${{ env.RENV_PATHS_ROOT }}
+        key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+        restore-keys: |
+            ${{ runner.os }}-renv-
 
     - name: Restore packages
       shell: Rscript {0}
       run: |
-        if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-        renv::restore()
+         if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+         renv::restore()
             
     - name: Restore packages
       shell: Rscript {0}
@@ -70,7 +70,7 @@ jobs:
     - name: execute notebooks
       shell: bash -l {0}
       run: |
-        export PATH="$PATH:/usr/share/miniconda/bin"
-        source .envrc
-        jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
+         export PATH="$PATH:/usr/share/miniconda/bin"
+         source .envrc
+         jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
       
