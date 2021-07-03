@@ -9,6 +9,7 @@ jobs:
         
     steps:
     - run: |
+        cd
         ls
         conda env create -f environment.yml
     - uses: actions/checkout@v2
