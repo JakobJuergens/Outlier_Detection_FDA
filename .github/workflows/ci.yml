@@ -33,12 +33,13 @@ jobs:
       with:
          r-version: '4.1.0'
      
-    - name: Restore R package cache
-      uses: actions/cache@v2
+    - name: Cache packages
+      uses: actions/cache@v1
       with:
-         path: ${{ env.R_LIBS_USER }}
-         key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-         restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+        path: ${{ env.RENV_PATHS_ROOT }}
+        key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+        restore-keys: |
+            ${{ runner.os }}-renv-
 
     - name: Restore packages
       shell: Rscript {0}
