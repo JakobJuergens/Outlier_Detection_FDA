@@ -28,14 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: r-lib/actions/setup-r@v1
-      with:
-         r-version: '4.1.0'
-
     - name: Install Packages
       run: | 
-        R -e "install.packages('IRkernel')"
-        R -e "IRkernel::installspec()"
+        conda install -c r r-irkernel
         
   IR_setup:
   
@@ -46,7 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - run: R -e "IRkernel::installspec()"
+    - run: 
+        R -e "IRkernel::installspec()"
       
   build:
     needs: [py_setup, R_setup, IR_setup]
