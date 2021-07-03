@@ -15,6 +15,7 @@ dependencies:
 - r-mass
 - r-rcpp
 - r-shiny
+- r-shinydashboard
 - pip
 - pip:
 

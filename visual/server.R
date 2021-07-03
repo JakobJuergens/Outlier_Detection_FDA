@@ -1,3 +1,7 @@
+library(shiny)
+library(shinydashboard)
+library(tidyverse)
+
 function(input, output, session) {
 
   my_tibble <- readRDS(file = "data/shiny_tibble.rds")
