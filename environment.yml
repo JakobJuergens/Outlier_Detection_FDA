@@ -7,16 +7,14 @@ dependencies:
 - numpy
 - pandas
 - jupyterlab
-- matplotlib
-- seaborn
 - scipy
-- statsmodels
 - r-base
 - r-tidyverse
-- r-essentials
 - r-irkernel
 - r-largeList
 - r-mass
+- r-rcpp
+- r-shiny
 - pip
 - pip:
 

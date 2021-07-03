@@ -18,7 +18,7 @@ jobs:
         python-version: 3.6
         auto-activate-base: false   
     - run: |
-        conda info --envs
+        conda init bash
         conda activate student_project
         export PATH="$PATH:/usr/share/miniconda/bin"
         R -e "IRkernel::installspec()"
