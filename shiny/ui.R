@@ -1,4 +1,4 @@
-ui <- fluidPage(
+fluidPage(
   numericInput("OBS_ID", "Which observation do you want to highlight?", value = NA),
   verbatimTextOutput("Observations"),
   mainPanel(h1("Outlier Detection"),

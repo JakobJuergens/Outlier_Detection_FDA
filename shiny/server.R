@@ -1,4 +1,4 @@
-server <- function(input, output, session) {
+function(input, output, session) {
 
   my_tibble <- readRDS(file = "data/shiny_tibble.rds")
     
