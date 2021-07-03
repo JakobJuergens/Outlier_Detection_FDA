@@ -1,6 +1,6 @@
 # Outlier Detection in Functional Data using functional depth measures
 
-This is a template for course projects. We use [GitHub Classroom](https://classroom.github.com) to administrate our student projects and so you need to sign up for a [GitHub Account](http://github.com).
+This is the final project of the OSE data science course (summer semester 2021) by Jakob R. Jürgens.
 
 ## Project overview
 
