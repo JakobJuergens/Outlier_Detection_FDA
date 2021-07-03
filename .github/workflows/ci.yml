@@ -24,7 +24,7 @@ jobs:
     name: 'Setup R environment'
     
     env:
-        RENV_PATHS_ROOT: ~/.local/share/renv
+        RENV_PATHS_ROOT: .local/share/renv
     
     runs-on: ubuntu-latest
     
