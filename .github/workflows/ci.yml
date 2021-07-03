@@ -1,0 +1,48 @@
+name: Continuous Integration
+
+on: [push]
+
+jobs:
+  py_setup:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        activate-environment: student_project
+        environment-file: environment.yml
+        python-version: 3.6
+        auto-activate-base: false
+    - run: |
+        export PATH="$PATH:/usr/share/miniconda/bin"
+        source .envrc
+    
+  R_setup:
+    needs: py_setup
+    runs-on: ubuntu-latest
+    
+    name: 'Setup R environment'
+    
+    steps:
+    - uses: r-lib/actions/setup-r@v1
+      with:
+         r-version: '4.1.0'
+        
+  IR_Kernel:
+    needs: [py_setup, R_setup]
+    runs-on: ubuntu-latest
+    
+    name: 'Install IRKernel' 
+    steps:
+      - run: Rscript CI_aux/IR_Kernel.R
+       
+  build:
+    needs: [py_setup, R_setup, IR_Kernel]
+    
+    runs-on: ubuntu-latest
+    name: 'execute notebooks'
+    steps:
+      - run: jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
+      
