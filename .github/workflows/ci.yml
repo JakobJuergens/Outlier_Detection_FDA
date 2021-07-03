@@ -31,36 +31,36 @@ jobs:
          r-version: '4.1.0'
          
     - name: Install system dependencies
-        if: runner.os == 'Linux'
-        run: |
-            while read -r cmd
-            do
-              eval sudo $cmd
-            done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+      if: runner.os == 'Linux'
+      run: |
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
        
     - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
-        shell: Rscript {0}
+      run: |
+        remotes::install_deps(dependencies = TRUE)
+        remotes::install_cran("rcmdcheck")
+      shell: Rscript {0}
      
      - name: Cache packages
-        uses: actions/cache@v1
-        with:
-            path: ${{ env.RENV_PATHS_ROOT }}
-            key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-            restore-keys: |
-                ${{ runner.os }}-renv-
+       uses: actions/cache@v1
+       with:
+         path: ${{ env.RENV_PATHS_ROOT }}
+         key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+         restore-keys: |
+             ${{ runner.os }}-renv-
 
     - name: Restore packages
-        shell: Rscript {0}
-        run: |
-            if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-            renv::restore()
+      shell: Rscript {0}
+      run: |
+        if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+        renv::restore()
             
     - name: Restore packages
-        shell: Rscript {0}
-        run: IRkernel::installspec()
+      shell: Rscript {0}
+      run: IRkernel::installspec()
        
   build:
     needs: [py_setup, R_setup, IR_Kernel]
