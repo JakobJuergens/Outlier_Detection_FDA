@@ -33,8 +33,9 @@ jobs:
          r-version: '4.1.0'
 
     - name: Install Packages
-      shell: Rscript {0}
-      run: install.packages("IRkernel")
+      run: | 
+        R -e "install.packages("IRkernel")"
+        R -e "IRkernel::installspec()"
         
   IR_setup:
   
