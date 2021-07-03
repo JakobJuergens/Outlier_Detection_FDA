@@ -1,5 +1,8 @@
 name: student_project
 
+channels:
+  - conda-forge
+
 dependencies:
 - numpy
 - pandas
@@ -8,6 +11,10 @@ dependencies:
 - seaborn
 - scipy
 - statsmodels
+- r-base
+- r-tidyverse
+- r-essentials
+- r-irkernel
 - pip
 - pip:
 

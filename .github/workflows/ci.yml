@@ -20,32 +20,9 @@ jobs:
     - run: |
         conda info --envs
         export PATH="$PATH:/usr/share/miniconda/bin"
-        
-  R_setup:
-    
-    name: 'Setup R environment'
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Install Packages
-      run: | 
-        conda install -c r r-irkernel
-        
-  IR_setup:
-  
-    needs: [py_setup, R_setup]
-    
-    name: 'Setup IR Kernel'
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-    - run: 
-        R -e "IRkernel::installspec()"
       
   build:
-    needs: [py_setup, R_setup, IR_setup]
+    needs: [py_setup]
     
     runs-on: ubuntu-latest
     steps:
