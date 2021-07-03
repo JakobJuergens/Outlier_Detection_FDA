@@ -37,6 +37,7 @@ jobs:
           shell: bash -l {0}
           run: |
             pwd
+            ls
             Rscript CI_aux/IR_Kernel.R
        
   build:
