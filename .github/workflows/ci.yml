@@ -14,11 +14,8 @@ jobs:
         activate-environment: student_project
         environment-file: environment.yml
         python-version: 3.6
-        auto-activate-base: false
-    - run: |
-        echo 'Arrived Here'
-        export PATH="$PATH:/usr/share/miniconda/bin"
-        source .envrc
+        auto-activate-base: false   
+        
     
   R_setup:
     needs: py_setup
@@ -45,5 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     name: 'execute notebooks'
     steps:
-      - run: jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
+      - run: |
+        export PATH="$PATH:/usr/share/miniconda/bin"
+        source .envrc
+        jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 *.ipynb
       
