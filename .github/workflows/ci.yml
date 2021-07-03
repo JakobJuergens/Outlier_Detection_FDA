@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   py_setup:
+  
+    name: 'Setup Python'
 
     runs-on: ubuntu-latest
         
@@ -18,9 +20,10 @@ jobs:
         
   R_setup:
     needs: py_setup
-    runs-on: ubuntu-latest
     
     name: 'Setup R environment'
+    
+    runs-on: ubuntu-latest
     
     env:
         RENV_PATHS_ROOT: renv
@@ -29,12 +32,6 @@ jobs:
     - uses: r-lib/actions/setup-r@v1
       with:
          r-version: '4.1.0'
-         
-    - name: Query dependencies
-      run: |
-         install.packages('remotes')
-         saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-      shell: Rscript {0}
      
     - name: Restore R package cache
       uses: actions/cache@v2
@@ -42,28 +39,6 @@ jobs:
          path: ${{ env.R_LIBS_USER }}
          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-     
-    - name: Install system dependencies
-      if: runner.os == 'Linux'
-      run: |
-         while read -r cmd
-         do
-           eval sudo $cmd
-         done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
-       
-    - name: Install dependencies
-      shell: Rscript {0}
-      run: |
-         remotes::install_deps(dependencies = TRUE)
-         remotes::install_cran("rcmdcheck")
-      
-    - name: Cache packages
-      uses: actions/cache@v1
-      with:
-        path: ${{ env.RENV_PATHS_ROOT }}
-        key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-        restore-keys: |
-            ${{ runner.os }}-renv-
 
     - name: Restore packages
       shell: Rscript {0}
