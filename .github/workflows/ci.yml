@@ -52,8 +52,7 @@ jobs:
     
     steps:
     - name: Initialize IR Kernel
-      shell: Rscript {0}
-      run: IRkernel::installspec()
+      run: R -e "IRkernel::installspec()"
       
   build:
     needs: [py_setup, R_setup, ir_kernel]
