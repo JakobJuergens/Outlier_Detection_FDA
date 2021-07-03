@@ -33,16 +33,17 @@ jobs:
       with:
          r-version: '4.1.0'
 
-    - name: Restore R package cache
-      uses: actions/cache@v2
-      with:
-        path: ${{ env.R_LIBS_USER }}
-        key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-        restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-        
     - name: Initialize IR_kernel
       shell: Rscript {0}
-      run: IRkernel::installspec()
+      run: |
+        install.packages("MASS")
+        install.packages("tidyverse")
+        install.packages("shiny")
+        install.packages("largeList")
+        install.packages("parallel")
+        install.packages("Rcpp")
+        install.packages("IRkernel")
+        IRkernel::installspec()
        
   build:
     needs: [py_setup, R_setup]
