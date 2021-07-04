@@ -5,7 +5,7 @@ This is the final project of the OSE data science course (summer semester 2021) 
 ## Project overview
 
 This project was made possible by a cooperation with Daimler AG. The main focus is on outlier classification in functional data.
-The algorrithm implemented in Project_main.ipynb was taken from: 
+The algorithm implemented in Project_main.ipynb was taken from: 
 
 Febrero, M., Galeano, P. and González-Manteiga, W. (2008), Outlier detection in functional data by depth measures, with application to identify abnormal NOx levels. 
 Environmetrics, 19: 331-345. https://doi.org/10.1002/env.878
@@ -63,6 +63,3 @@ A typical project notebook has the following structure:
 * independent contribution, e.g. additional external evidence, robustness checks, visualization
 
 There might be good reason to deviate from this structure. If so, please simply document your reasoning and go ahead. Please use the opportunity to review other student projects for some inspirations as well.
-
-## Project Example
-

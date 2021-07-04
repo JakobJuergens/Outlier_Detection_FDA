@@ -5,35 +5,51 @@ library(tidyverse)
 outliers_info <- readRDS(file = "data/outliers_info.rds")
 my_tibble <- readRDS(file = "data/shiny_tibble.rds")
 
+num_observations <- length(unique(my_tibble$id))
+
 header <- dashboardHeader(
   title = "Outlier Detection"
 )
 
 sidebar <- dashboardSidebar(
   sliderInput("OUT_THR", "Observations over which certainty threshold shall be marked as outliers?", min = 0, max = 1, value = 0.5, step = 0.01),
-    sliderInput("CERT_THR", "Show observations with certainty values over this threshold:", min = 0, max = 1, value = 0.5, step = 0.01),
-    numericInput("OBS_ID", "Which observation do you want to highlight?", value = NA)
+  sliderInput("CERT_THR", "Show observations with certainty values over this threshold:", min = 0, max = 1, value = 0.5, step = 0.01),
+  numericInput("OBS_ID", "Which observation do you want to highlight?", value = NA)
 )
 
 body <- dashboardBody(
+  column(width = 12,
   fluidRow(width = 12,
-           column(12,
-                  h3("Description: ")  
+           column(width = 7,
+                  box(title = "Description", 
+                      width = 9, h4("This dashboard visualizes the method of outlier detection used in the project. \n"))),
+           column(width = 5,
+                  infoBox("Observations", num_observations, icon = icon("list")),
+                  infoBox("Flagged", textOutput("nflagged"), icon = icon("list")))
            )
-           ),
+  ),
   fluidRow(width = 12,
-           column(12, 
+                  box(width = 12,
                   title = "Plotted Observations",
                   plotOutput("my_plot"))
   ),
   fluidRow(width = 12,
      column(12,
-            h3("Flagged observations: "),
-            h4(textOutput("flagged")),
-            h3("Missed outliers: "),
-            h4(textOutput("missed")),
-            h3("False Outliers: "),
-            h4(textOutput("false"))
+            tabBox(width = 12,
+                   title = 'Information',
+                   tabPanel("Flagged Observations", 
+                    h3("Flagged observations: "),
+                    h4(textOutput("flagged")),
+                   ),
+                   tabPanel("Missed Outliers", 
+                            h3("Missed Outliers: "),
+                            h4(textOutput("missed")),
+                   ),
+                   tabPanel("False Outliers:", 
+                            h3("False outliers: "),
+                            h4(textOutput("false")),
+                   )
+            )      
       )
     )
 )
@@ -74,6 +90,7 @@ server <- function(input, output, session) {
   })
   
   output$flagged <- renderText(out_which())
+  output$nflagged <- renderText(length(out_which()))
   output$missed <- renderText(setdiff(outliers_info$original, out_which()))
   output$false <- renderText(setdiff(out_which(), outliers_info$original))
   
