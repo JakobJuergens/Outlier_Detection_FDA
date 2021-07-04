@@ -15,7 +15,7 @@ Please ensure that a brief description of your project is included in the [READM
       width="109" height="20">
 </a>
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=Project_Main.ipynb)
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb)
 
 If you want to start the visualization click here:
 
