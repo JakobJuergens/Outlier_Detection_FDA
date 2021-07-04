@@ -16,7 +16,6 @@ dependencies:
 - r-rcpp
 - r-shiny
 - r-shinydashboard
-- shinydashboard
 - pip
 - pip:
 
