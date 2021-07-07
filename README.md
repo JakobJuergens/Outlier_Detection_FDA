@@ -1,4 +1,4 @@
-# Outlier Detection in Functional Data using functional depth measures
+# Outlier Detection in Sensor Data using Functional Depth Measures
 
 This is the final project of the OSE data science course (summer semester 2021) by Jakob R. Jürgens.
 
@@ -26,7 +26,11 @@ This shiny app can be started using this badge:
 RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/visual/)
 
 ## Acknowledgements
-Special thanks to Marc Kerstan, who allowed me to use his code for preparing sensor data collected in production processes at Daimler.
+I want to thank a few people that either helped in making this project possible or aided me in some other way.
+* Vincent Dekker and Bernhard Häußler, my contacts at Daimler AG who made this project possible
+* Prof. Philipp Eisenhauer and Manuel Huth, who made this cooperation possible from the Universities' side
+* Marc Kerstan, who allowed me to use his code for preparing sensor data collected in production processes at Daimler
+* Prof. Dominik Liebl, who introduced me to the concept of using functional depth to identify outliers in functional data
 
 ## Structure of notebook
 
