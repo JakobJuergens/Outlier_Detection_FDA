@@ -14,58 +14,61 @@ header <- dashboardHeader(
 sidebar <- dashboardSidebar(
   sliderInput("OUT_THR", "Observations over which certainty threshold shall be marked as outliers?", min = 0, max = 1, value = 0.5, step = 0.01),
   sliderInput("CERT_THR", "Show observations with certainty values over this threshold:", min = 0, max = 1, value = 0.5, step = 0.01),
-  numericInput("OBS_ID", "Which observation do you want to highlight?", value = NA)
+  numericInput("OBS_ID", "Which observation do you want to highlight?", value = NA),
+  numericInput("L_BORDER", "What is the lower bound of the window you want to see?", value = NA),
+  numericInput("R_BORDER", "What is the upper bound of the window you want to see?", value = NA)
 )
 
 body <- dashboardBody(
   column(width = 12,
+         fluidRow(width = 12,
+                  column(width = 7,
+                         box(title = "Description", 
+                             width = 9, h4("This dashboard visualizes the method of outlier detection used in the project. \n"))),
+                  column(width = 5,
+                         infoBox("Observations", num_observations, icon = icon("list")),
+                         infoBox("Flagged", textOutput("nflagged"), icon = icon("list")))
+         )
+  ),
   fluidRow(width = 12,
-           column(width = 7,
-                  box(title = "Description", 
-                      width = 9, h4("This dashboard visualizes the method of outlier detection used in the project. \n"))),
-           column(width = 5,
-                  infoBox("Observations", num_observations, icon = icon("list")),
-                  infoBox("Flagged", textOutput("nflagged"), icon = icon("list")))
+           box(width = 12,
+               title = "Plotted Observations",
+               plotOutput("my_plot"))
+  ),
+  fluidRow(width = 12,
+           column(12,
+                  tabBox(width = 12,
+                         title = 'Information',
+                         tabPanel("Flagged Observations", 
+                                  h3("Flagged observations: "),
+                                  h4(textOutput("flagged")),
+                         ),
+                         tabPanel("Missed Outliers", 
+                                  h3("Missed Outliers: "),
+                                  h4(textOutput("missed")),
+                         ),
+                         tabPanel("False Outliers:", 
+                                  h3("False outliers: "),
+                                  h4(textOutput("false")),
+                         )
+                  )      
            )
-  ),
-  fluidRow(width = 12,
-                  box(width = 12,
-                  title = "Plotted Observations",
-                  plotOutput("my_plot"))
-  ),
-  fluidRow(width = 12,
-     column(12,
-            tabBox(width = 12,
-                   title = 'Information',
-                   tabPanel("Flagged Observations", 
-                    h3("Flagged observations: "),
-                    h4(textOutput("flagged")),
-                   ),
-                   tabPanel("Missed Outliers", 
-                            h3("Missed Outliers: "),
-                            h4(textOutput("missed")),
-                   ),
-                   tabPanel("False Outliers:", 
-                            h3("False outliers: "),
-                            h4(textOutput("false")),
-                   )
-            )      
-      )
-    )
+  )
 )
 
-  
+
 ui <- dashboardPage(
-    header,
-    sidebar,
-    body
-  )
+  header,
+  sidebar,
+  body
+)
 
 server <- function(input, output, session) {
   
   show_which <- reactive({
     CERT_THR <- input$CERT_THR
-    show_which <- which(my_tibble$cert >= CERT_THR)
+    show_which <- sort(unique(c(which(my_tibble$cert >= CERT_THR),
+                    which(my_tibble$id == input$OBS_ID))))
     show_which
   })
   
@@ -108,6 +111,7 @@ server <- function(input, output, session) {
       geom_line(aes(x = args, y = vals, col = cert, group = id, alpha = a), size = s) +
       scale_color_gradient(low = "#0062ff", high = "#ff0000") +
       theme(text=element_text(size=16, family="Serif")) +
+      xlim(ifelse(!is.na(input$L_BORDER), input$L_BORDER, 0), ifelse(!is.na(input$R_BORDER), input$R_BORDER, 1)) +
       guides(alpha = FALSE) 
   })
 }
