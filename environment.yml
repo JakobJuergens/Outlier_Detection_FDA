@@ -14,7 +14,6 @@ dependencies:
 - r-shiny
 - r-shinydashboard
 - r-repr
-- r-patchwork
 - pip
 - pip:
 
