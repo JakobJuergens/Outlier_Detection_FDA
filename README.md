@@ -1,7 +1,7 @@
 # Outlier Detection in Sensor Data using Functional Depth Measures
 
 This is the final project of the OSE data science course (summer semester 2021) by Jakob R. Jürgens.
-![Continuous Integration](https://github.com/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/workflows/ci.yml/badge.svg)
+![ci](https://github.com/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/workflows/ci.yml/badge.svg)
 
 ## Project overview
 
