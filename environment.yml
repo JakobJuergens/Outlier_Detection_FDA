@@ -13,6 +13,8 @@ dependencies:
 - r-rcpp
 - r-shiny
 - r-shinydashboard
+- r-repr
+- r-patchwork
 - pip
 - pip:
 
