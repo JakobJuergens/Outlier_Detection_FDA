@@ -63,6 +63,7 @@ zeroing_vis <- function(){
             geom_segment(aes(x = x_min, xend = x_max, y = arrow_height, yend = arrow_height, col = type), arrow = arrow()) +
             geom_segment(aes(x = x_max, xend = x_min, y = arrow_height, yend = arrow_height, col = type), arrow = arrow()) +
             theme_light() +
+            guides(fill = FALSE, colour = FALSE) +
             theme(plot.title = element_text(size=24),
                   axis.title.x = element_text(size=18),
                   axis.title.y = element_text(size=18)) + 
