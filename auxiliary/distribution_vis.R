@@ -111,7 +111,7 @@ dynamic_splits2_vis <- function(){
     
     p <- ggplot(data = sec_tibble) +
             geom_line(data = my_tibble, aes(x = x, y = y), col = "red", lwd = 1) +
-            ggtitle("Dynamic Splitting") +
+            ggtitle("Dynamic Splitting with varying acceptable stretching") +
             xlab("Endpoint of Measuring Interval") + ylab("Density") +
             geom_rect(aes(xmin = x_min, xmax = x_max, ymin = 0, ymax = 0.15, group = seq_along(my_x)), col = "green", fill = "green", alpha = 0.2) +
             geom_segment(aes(x = my_x, xend = my_x, y = 0, yend = 0.15, group = seq_along(my_x)), col = "blue") +
