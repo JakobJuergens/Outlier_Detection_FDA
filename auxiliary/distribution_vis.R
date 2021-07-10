@@ -68,6 +68,62 @@ static_splits_vis <- function(){
     anim         
 }
 
-dynamic_splits <- function(){
+dynamic_splits_vis <- function(){
     
+    my_tibble <- tibble(x = seq(0, 22, length.out = 1000),
+                        y = my_dens(x))
+    
+    AS <- 1.2
+    
+    sec_tibble <- tibble(my_x = seq(0, 18, length.out = 500))
+    
+    p <- ggplot(data = sec_tibble) +
+            geom_line(data = my_tibble, aes(x = x, y = y), col = "red", lwd = 1) +
+            ggtitle("Dynamic Splitting") +
+            xlab("Endpoint of Measuring Interval") + ylab("Density") +
+            geom_rect(aes(xmin = my_x / AS, xmax = my_x * AS, ymin = 0, ymax = 0.15, group = seq_along(my_x)), col = "green", fill = "green", alpha = 0.2) +
+            geom_segment(aes(x = my_x, xend = my_x, y = 0, yend = 0.15, group = seq_along(my_x)), col = "blue") +
+            xlim(0, 22) + ylim(0, 0.15) +
+            theme_light() +
+            theme(plot.title = element_text(size=24),
+                  axis.title.x = element_text(size=18),
+                  axis.title.y = element_text(size=18)) +
+            transition_states(my_x, transition_length = 1, state_length = 1)
+    
+    anim <- animate(p, nframes = 1000, fps = 40, renderer = gifski_renderer(file = './material/dyn_splits.gif'),
+                height = 500, width = 1000)
+    
+    anim    
+}
+
+dynamic_splits2_vis <- function(){
+    
+    my_tibble <- tibble(x = seq(0, 22, length.out = 1000),
+                        y = my_dens(x))
+    
+    AS <- 1.2
+    
+    sec_tibble <- tibble(my_x = seq(0, 18, length.out = 500),
+                         dens = my_dens(my_x),
+                         AS = 1 + 0.2 * 1/(1 + 5*dens),
+                         x_min = my_x / AS,
+                         x_max = my_x * AS)
+    
+    p <- ggplot(data = sec_tibble) +
+            geom_line(data = my_tibble, aes(x = x, y = y), col = "red", lwd = 1) +
+            ggtitle("Dynamic Splitting") +
+            xlab("Endpoint of Measuring Interval") + ylab("Density") +
+            geom_rect(aes(xmin = x_min, xmax = x_max, ymin = 0, ymax = 0.15, group = seq_along(my_x)), col = "green", fill = "green", alpha = 0.2) +
+            geom_segment(aes(x = my_x, xend = my_x, y = 0, yend = 0.15, group = seq_along(my_x)), col = "blue") +
+            xlim(0, 22) + ylim(0, 0.15) +
+            theme_light() +
+            theme(plot.title = element_text(size=24),
+                  axis.title.x = element_text(size=18),
+                  axis.title.y = element_text(size=18)) +
+            transition_states(my_x, transition_length = 1, state_length = 1)
+    
+    anim <- animate(p, nframes = 1000, fps = 40, renderer = gifski_renderer(file = './material/dyn_splits2.gif'),
+                height = 500, width = 1000)
+    
+    anim    
 }
