@@ -1,3 +1,5 @@
+sourceCpp('auxiliary/rcpp_functions.cpp')
+
 obs_vis <- function(){
     set.seed(12345)
 
@@ -127,4 +129,48 @@ stretching_vis <- function(){
     animate(p, nframes = 400, fps = 40, renderer = gifski_renderer(file = './material/stretch.gif'),
             height = 500, width = 1000)
         
+}
+
+lin_approx_vis <- function(){
+ 
+    a <- c(2, sort(runif(20, 2, 8)), 8)
+    b <- c(2, sort(runif(15, 2, 8)), 8)
+    f_a <- 1.4 * (a - min(a)) + rnorm(22, sd = 0.2)
+    f_b <- 0.5 + 1.2 * (b - min(b)) + rnorm(17, sd = 0.2)
+    
+    grid <- seq(2, 8, length.out = 25)
+    
+    data_tibble <- tibble(x = c(a, b, rep(grid, times = 2)), 
+                          x_min = rep(2, times = 89),
+                          y = c(f_a, f_b, 
+                                grid_approx_obs(args = a, vals = f_a, grid = grid),
+                                grid_approx_obs(args = b, vals = f_b, grid = grid)),
+                          type = c(rep('A', times = 22),
+                                   rep('B', times = 17),
+                                   rep('A', times = 25),
+                                   rep('B', times = 25)),
+                          approx = c(rep("Original", times = 39),
+                                     rep("Approximated", times = 50)))
+                          
+                              
+    p <- ggplot(data = data_tibble, aes(x = x, y = y)) +
+            geom_point(aes(x = x, y = y, fill = type, group = approx), col = "blue", shape = 23, size = 5) +
+            ggtitle("Grid Approximation",
+                    subtitle = 'Now showing {closest_state} Data') +
+            xlab("Angle") + ylab("Torque") +
+            xlim(1.5, 8.5) + ylim(-2, 12.5) +
+            geom_vline(xintercept = grid, col = "red", alpha = 0.4) +
+            theme_light() +
+            theme(plot.title = element_text(size=24),
+                  plot.subtitle = element_text(size=18), 
+                  axis.title.x = element_text(size=18),
+                  axis.title.y = element_text(size=18)) + 
+            guides(fill = FALSE) +
+            transition_states(approx, transition_length = 1, state_length = 1) +
+            enter_fade() +
+            exit_shrink()
+    
+    animate(p, nframes = 300, fps = 40, renderer = gifski_renderer(file = './material/grid_approx.gif'),
+                height = 500, width = 1000)                              
+                                    
 }
