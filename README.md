@@ -29,7 +29,7 @@ RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/
 
 ## Acknowledgements
 I want to thank a few people that either helped in making this project possible or aided me in some other way.
-* Vincent Dekker and Bernhard Häußler, my contacts at Daimler AG who made this project possible
+* Dr. Vincent Dekker and Bernhard Häußler, my contacts at Daimler AG who made this project possible
 * Prof. Philipp Eisenhauer and Manuel Huth, who made this cooperation possible from the Universities' side
 * Marc Kerstan, who allowed me to use his code for preparing sensor data collected in production processes at Daimler
 * Prof. Dominik Liebl, who introduced me to the concept of using functional depth to identify outliers in functional data
