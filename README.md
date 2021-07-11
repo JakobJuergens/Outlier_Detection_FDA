@@ -23,7 +23,7 @@ The method is explained an implemented in the Jupyter Notebook Project_Main.ipyn
 
 [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb)
 
-This shiny app can be started using this badge:
+Even though I recommend using it locally due to a lengthy building time of the environment in Binder, the shiny app can be started using this badge:
 
 RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/visual/)
 
@@ -34,18 +34,9 @@ I want to thank a few people that either helped in making this project possible 
 * Marc Kerstan, who allowed me to use his code for preparing sensor data collected in production processes at Daimler
 * Prof. Dominik Liebl, who introduced me to the concept of using functional depth to identify outliers in functional data
 
-## Structure of notebook
+## Sources:
 
-A typical project notebook has the following structure:
+* Cuevas, A. & Febrero-Bande, M. & Fraiman, R. (2006). On the use of bootstrap for estimating functions with functional data. Computational Statistics & Data Analysis. 51. 1063-1074.
+* Febrero-Bande, M. & Galeano, P. & Gonzàlez-Manteiga, W. (2008). Outlier detection in functional data by depth measures, with application to identify abnormal NOx levels. Environmetrics. 19. 331 - 345.
+* Gijbels, I. & Nagy, S. (2017). On a General Definition of Depth for Functional Data. Statistical Science. 32. 630-639.
 
-* presentation of baseline article with proper citation and brief summary
-
-* using causal graphs to illustrate the authors' identification strategy
-
-* replication of selected key results
-
-* critical assessment of quality
-
-* independent contribution, e.g. additional external evidence, robustness checks, visualization
-
-There might be good reason to deviate from this structure. If so, please simply document your reasoning and go ahead. Please use the opportunity to review other student projects for some inspirations as well.
