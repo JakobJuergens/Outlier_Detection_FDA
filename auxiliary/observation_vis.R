@@ -82,47 +82,77 @@ zeroing_vis <- function(){
 stretching_vis <- function(){
     set.seed(12345)
     
-    tibble_1 <- tibble(x = sort(runif(20, 0, 5)), 
+    tibble_1 <- tibble(x = c(0, sort(runif(20, 0, 5))), 
                        x_min = min(x),
-                       y = 1.02*(x-x_min) + rnorm(20, sd = 0.2),
+                       y = 1.02*(x-x_min) + rnorm(21, sd = 0.2),
                        x_max = max(x))
     
     x_1_interval <- tibble_1$x_max[1] - tibble_1$x_min[1]
     
-    tibble_2u <- tibble(x = sort(runif(20, 0, 4)),
+    
+    tibble_2u <- tibble(x = c(0, sort(runif(20, 0, 4))),
                         type = "non stretched",
+                        ind = "A",
+                        height = -0.8,
                         x_min = min(x),
-                        y = 1.03*(x - x_min) + rnorm(20, sd = 0.2),
+                        y = 1.03*(x - x_min) + rnorm(21, sd = 0.2),
                         x_max = max(x))
     
     x_2_interval <- tibble_2u$x_max[1] - tibble_2u$x_min[1]
     
-    stretch_fac = x_1_interval / x_2_interval
+    stretch_fac_2 = x_1_interval / x_2_interval
     
-    tibble_2s <- tibble(x = (tibble_2u$x - tibble_2u$x_min + tibble_1$x_min) * stretch_fac,
+    tibble_2s <- tibble(x = (tibble_2u$x - tibble_2u$x_min + tibble_1$x_min) * stretch_fac_2,
                         y = tibble_2u$y,
                         type = "stretched",
+                        ind = "A",
+                        height = -0.8,
                         x_min = min(x),
                         x_max = max(x))
     
     tibble_2 <- rbind(tibble_2u, tibble_2s)
     
     
-    p <- ggplot(data = tibble_2, aes(x = x, y = y)) +
-            geom_point(aes(x = x, y = y), fill = "green", col = "blue", shape = 23, size = 5) +
-            geom_point(data = tibble_1, aes(x = x, y = y), fill = "red", col = "blue", shape = 23, size = 5) +
+    tibble_3u <- tibble(x = c(0, sort(runif(20, 0, 6))),
+                        type = "non stretched",
+                        ind = "B",
+                        height = -1.6,
+                        x_min = min(x),
+                        y = 1.01*(x - x_min) + rnorm(21, sd = 0.2),
+                        x_max = max(x))
+    
+    x_3_interval <- tibble_3u$x_max[1] - tibble_3u$x_min[1]
+    
+    stretch_fac_3 = x_1_interval / x_3_interval
+    
+    tibble_3s <- tibble(x = (tibble_3u$x - tibble_3u$x_min + tibble_1$x_min) * stretch_fac_3,
+                        y = tibble_3u$y,
+                        type = "stretched",
+                        ind = "B",
+                        height = -1.6,
+                        x_min = min(x),
+                        x_max = max(x))
+    
+    tibble_3 <- rbind(tibble_3u, tibble_3s)
+    
+    stretch_tibble <- rbind(tibble_2, tibble_3)
+    
+    
+    p <- ggplot(data = stretch_tibble, aes(x = x, y = y)) +
+            geom_point(aes(x = x, y = y, fill = ind), col = "blue", shape = 23, size = 5) +
+            geom_point(data = tibble_1, aes(x = x, y = y), fill = "green", col = "blue", shape = 23, size = 5) +
             ggtitle("Acceptable Stretching") +
             xlab("Angle") + ylab("Torque") +
-            xlim(0, 7) + ylim(-1.5, 7) +
-            geom_vline(aes(xintercept = x_min), col = "green") +
-            geom_vline(aes(xintercept = x_max), col = "green") +
-            geom_vline(data = tibble_1, aes(xintercept = x_min), col = "red") +
-            geom_vline(data = tibble_1, aes(xintercept = x_max), col = "red") +
-            geom_segment(aes(x = x_min, xend = x_max, y = -0.8, yend = -0.8), col = "green", arrow = arrow()) +
-            geom_segment(aes(x = x_max, xend = x_min, y = -0.8, yend = -0.8), col = "green", arrow = arrow()) +
-            geom_segment(data = tibble_1, aes(x = x_min, xend = x_max, y = -1.2, yend = -1.2), col = "red", arrow = arrow()) +
-            geom_segment(data = tibble_1, aes(x = x_max, xend = x_min, y = -1.2, yend = -1.2), col = "red", arrow = arrow()) +
+            xlim(0, 7) + ylim(-2, 7) +
+            geom_vline(xintercept = 0, col = "black") +
+            geom_vline(aes(xintercept = x_max, col = ind)) +
+            geom_vline(data = tibble_1, aes(xintercept = x_max), col = "green") +
+            geom_segment(aes(x = x_min, xend = x_max, y = height, yend = height, col = ind), arrow = arrow()) +
+            geom_segment(aes(x = x_max, xend = x_min, y = height, yend = height, col = ind), arrow = arrow()) +
+            geom_segment(data = tibble_1, aes(x = x_min, xend = x_max, y = -1.2, yend = -1.2), col = "green", arrow = arrow()) +
+            geom_segment(data = tibble_1, aes(x = x_max, xend = x_min, y = -1.2, yend = -1.2), col = "green", arrow = arrow()) +
             theme_light() +
+            guides(fill = FALSE, colour = FALSE) +
             theme(plot.title = element_text(size=24),
                   axis.title.x = element_text(size=18),
                   axis.title.y = element_text(size=18)) + 

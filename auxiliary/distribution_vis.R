@@ -103,8 +103,6 @@ dynamic_splits2_vis <- function(){
     my_tibble <- tibble(x = seq(0, 22, length.out = 1000),
                         y = my_dens(x))
     
-    AS <- 1.2
-    
     sec_tibble <- tibble(my_x = seq(0, 18, length.out = 500),
                          dens = my_dens(my_x),
                          AS = 1 + 0.2 * 1/(1 + 5*dens),
