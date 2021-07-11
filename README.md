@@ -5,6 +5,8 @@ This is the final project of the OSE data science course (summer semester 2021) 
 ![ci](https://github.com/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/actions/workflows/ci.yml/badge.svg)
 
 ## Project overview
+The main focus of this project is to develop a procedure to identify abnormal observations in sensor data collected during production processes. Each data point can be interpreted as a set of points where a function was obserrved.
+Therefore the whole problem can be approached from a standpoint of outlierr classification in functional data. An appraoch which I chose as the basis of my project.
 
 This project was made possible by a cooperation with Daimler AG. The main focus is on outlier classification in functional data.
 The algorithm implemented in Project_main.ipynb was taken from: 
