@@ -6,22 +6,24 @@ obs_vis <- function(){
     ex_tibble <- tibble(x = sort(runif(20, 2, 8)), 
                     y = 1.02*x + rnorm(20, sd = 0.2))
 
-    ggplot(data = ex_tibble, aes(x = x, y = y)) +
-        geom_point(fill = "red", col = "blue", shape = 23, size = 5) +
-        geom_line(col = "blue", size = 1) +
-        xlim(0, 10) + ylim(-1, 9) +
-        xlab("Angle") + ylab("Torque") +
-        ggtitle("One Observation") +
-        geom_vline(aes(xintercept = min(x))) +
-        geom_vline(aes(xintercept = max(x))) +
-        geom_segment(aes(x = min(x), xend = max(x), y = -1, yend = -1), col = "green", arrow = arrow()) +
-        geom_segment(aes(x = max(x), xend = min(x), y = -1, yend = -1), col = "green", arrow = arrow()) +
-        annotate("text", x = 5, y = -0.5, label = "Measuring Interval", size = 8) +
-        annotate("rect", xmin = 4, xmax = 6, ymin = -1, ymax = 0, fill = "green", alpha = 0.2) +
-        theme_light() +
-        theme(plot.title = element_text(size=24),
-              axis.title.x = element_text(size=18),
-              axis.title.y = element_text(size=18))
+    p <- ggplot(data = ex_tibble, aes(x = x, y = y)) +
+            geom_point(fill = "red", col = "blue", shape = 23, size = 5) +
+            geom_line(col = "blue", size = 1) +
+            xlim(0, 10) + ylim(-1, 9) +
+            xlab("Angle") + ylab("Torque") +
+            ggtitle("One Observation") +
+            geom_vline(aes(xintercept = min(x))) +
+            geom_vline(aes(xintercept = max(x))) +
+            geom_segment(aes(x = min(x), xend = max(x), y = -1, yend = -1), col = "green", arrow = arrow()) +
+            geom_segment(aes(x = max(x), xend = min(x), y = -1, yend = -1), col = "green", arrow = arrow()) +
+            annotate("text", x = 5, y = -0.5, label = "Measuring Interval", size = 8) +
+            annotate("rect", xmin = 4, xmax = 6, ymin = -1, ymax = 0, fill = "green", alpha = 0.2) +
+            theme_light() +
+            theme(plot.title = element_text(size=24),
+                  axis.title.x = element_text(size=18),
+                  axis.title.y = element_text(size=18))
+    
+    ggsave(filename = "./material/observation.png", plot = p, width = 5000, height = 1500, units = "px")  
 }
 
 zeroing_vis <- function(){

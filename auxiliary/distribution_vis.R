@@ -15,15 +15,17 @@ dist_vis <- function(){
     my_tibble <- tibble(x = seq(0, 18, length.out = 1000),
                         y = my_dens(x))
     
-    ggplot(data = my_tibble) +
-        geom_line(aes(x = x, y = y)) +
-        ggtitle("Distribution of Endpoints") +
-        xlab("Endpoint of Measuring Interval") + ylab("Density") +
-        xlim(0, 18) +
-        theme_light() +
-        theme(plot.title = element_text(size=24),
-              axis.title.x = element_text(size=18),
-              axis.title.y = element_text(size=18))
+    p <- ggplot(data = my_tibble) +
+            geom_line(aes(x = x, y = y)) +
+            ggtitle("Distribution of Endpoints") +
+            xlab("Endpoint of Measuring Interval") + ylab("Density") +
+            xlim(0, 18) +
+            theme_light() +
+            theme(plot.title = element_text(size=24),
+                  axis.title.x = element_text(size=18),
+                  axis.title.y = element_text(size=18))
+    
+    ggsave(filename = "./material/dist.png", plot = p, width = 5000, height = 2500, units = "px")  
         
 }
 
