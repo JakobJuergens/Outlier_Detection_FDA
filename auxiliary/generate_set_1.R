@@ -36,7 +36,44 @@ generate_set_1 <- function(){
     # Create observations
     functions <- map(.x = 1:n,
                      .f = function(i) random_dat(grid = grids[[i]], slope = 1.02, out = outliers[i]))
+                     
+    # Save data in random access format
+    saveList(functions, "./data/Set_1/functional.llo")
+    saveRDS(ids, "./data/Set_1/ids.RDS")
+    return(list(data = functions, ids = ids))                 
 }
 
+# bring into tidy format                     
+tidify_1 <- function(data_set, ids){
+    
+    # extract arguments
+    x_1 <- unlist(map(.x = data_set,
+                      .f = function(fun) fun$args))
+                      
+    # extract values                          
+    y_1 <- unlist(map(.x = data_set,
+                      .f = function(fun) fun$vals))
+    # calculate lengths                      
+    len <- unlist(map(.x = data_set,
+                      .f = function(fun) length(fun$args))) 
+                      
+    # make fitting repetitions of ids                      
+    ids <- unlist(map(.x = 1:500,
+                      .f = function(i) rep(ids[i], times = len[i]))) 
+    
+    # make into tibble                      
+    tibbled <-  tibble(x = x_1, 
+                       y = y_1,
+                       ids = ids)  
+                      
+    return(tibbled)
+}
 
-
+vis_1 <- function(tidy_1){
+    p <- ggplot(data = tidy_1) +
+            ggtitle("Data Set 1") +
+            geom_line(aes(x = x, y = y, group = ids), col = "blue", alpha = 0.1) +
+            theme_light()
+    
+    ggsave(filename = "./material/set_1_raw.png", plot = p, width = 5000, height = 1500, units = "px")
+}
