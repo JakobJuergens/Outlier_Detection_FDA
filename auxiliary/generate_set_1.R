@@ -40,6 +40,7 @@ generate_set_1 <- function(){
     # Save data in random access format
     saveList(functions, "./data/Set_1/functional.llo")
     saveRDS(ids, "./data/Set_1/ids.RDS")
+    saveRDS(ids, "./data/Set_1/outliers.RDS")
     return(list(data = functions, ids = ids, outliers = which(outliers == 1)))                 
 }
 
