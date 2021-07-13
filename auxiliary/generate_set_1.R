@@ -5,7 +5,7 @@ random_dat <- function(grid, slope, out){
         vals <- runif(n = length(grid), min = 0.8, max = 1.2) * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.05)
     }
     else{
-        vals <- runif(n = length(grid), min = 0.5, max = 1.5) * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.1)
+        vals <- runif(n = length(grid), min = 1, max = 1.4) * 1.2 * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.1)
     }
     
     return(list(args = grid,
@@ -40,7 +40,7 @@ generate_set_1 <- function(){
     # Save data in random access format
     saveList(functions, "./data/Set_1/functional.llo")
     saveRDS(ids, "./data/Set_1/ids.RDS")
-    saveRDS(ids, "./data/Set_1/outliers.RDS")
+    saveRDS(which(outliers == 1), "./data/Set_1/outliers.RDS")
     return(list(data = functions, ids = ids, outliers = which(outliers == 1)))                 
 }
 
