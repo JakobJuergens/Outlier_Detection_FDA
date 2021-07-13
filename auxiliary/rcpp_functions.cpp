@@ -63,13 +63,24 @@ double quant(NumericVector v, double alpha){
   return(tmp[k]);
 }
 
-double func_norm(NumericVector obs1, NumericVector obs2){
-  //return(max(abs(obs1 - obs2)));  
-  return(sqrt(sum(pow(obs1 - obs2, 2))));
+double func_norm(NumericVector grid, NumericVector vals1, NumericVector vals2){
+    
+  int num_points = grid.size();
+  NumericVector deltas(num_points - 1);
+  NumericVector tmp1(num_points - 1);
+  NumericVector tmp2(num_points - 1);
+    
+  for(int i = 0; i < num_points - 1; i++){
+      deltas[i] = grid[i+1] - grid[i];
+      tmp1[i] = vals1[i+1];
+      tmp2[i] = vals2[i+1];
+  }  
+    
+  return(sqrt(sum(deltas * pow(tmp1 - tmp2, 2))));
 }
 
 // [[Rcpp::export]]
-NumericVector hM_depth(NumericMatrix valueMatrix) {
+NumericVector hM_depth(NumericMatrix valueMatrix, NumericVector grid) {
   
   int n = valueMatrix.nrow();
   NumericMatrix norms(n,n);
@@ -80,7 +91,7 @@ NumericVector hM_depth(NumericMatrix valueMatrix) {
   // Main diagonal is zero
   for(int i = 1; i < n; i++){
     for(int j = 0; j < i; j++){
-      norms(i,j) = func_norm(valueMatrix(i, _ ), valueMatrix(j, _ ));
+      norms(i,j) = func_norm(grid, valueMatrix(i, _ ), valueMatrix(j, _ ));
       norms(j,i) = norms(i,j);
       
       tmp[z] = norms(i,j);
