@@ -2,10 +2,10 @@
 random_dat <- function(grid, slope, out){
     args <- grid
     if(out == 0){
-        vals <- runif(n = length(grid), min = 0, max = slope) * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.05)
+        vals <- runif(n = length(grid), min = 0.8, max = 1.2) * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.05)
     }
     else{
-        vals <- runif(n = length(grid), min = 0, max = 1.25 * slope) * 1.25 *slope * args + rnorm(n = length(grid), mean = 0, sd = 0.05)
+        vals <- runif(n = length(grid), min = 0.5, max = 1.5) * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.1)
     }
     
     return(list(args = grid,
@@ -22,7 +22,7 @@ generate_set_1 <- function(){
     n <- 500
     ids <- as.character(1:n)
 
-    # Choose ~5% of obserrvations as outliers
+    # Choose ~5% of observations as outliers
     outliers <- rbinom(n = n, size = 1, prob = 0.05)
     
     # Choose number of measurements for each observation
@@ -40,7 +40,7 @@ generate_set_1 <- function(){
     # Save data in random access format
     saveList(functions, "./data/Set_1/functional.llo")
     saveRDS(ids, "./data/Set_1/ids.RDS")
-    return(list(data = functions, ids = ids))                 
+    return(list(data = functions, ids = ids, outliers = which(outliers == 1)))                 
 }
 
 # bring into tidy format                     
@@ -73,7 +73,10 @@ vis_1 <- function(tidy_1){
     p <- ggplot(data = tidy_1) +
             ggtitle("Data Set 1") +
             geom_line(aes(x = x, y = y, group = ids), col = "blue", alpha = 0.1) +
-            theme_light()
+            theme_light() +
+            theme(plot.title = element_text(size=24),
+                  axis.title.x = element_text(size=18),
+                  axis.title.y = element_text(size=18))
     
-    ggsave(filename = "./material/set_1_raw.png", plot = p, width = 5000, height = 1500, units = "px")
+    p
 }
