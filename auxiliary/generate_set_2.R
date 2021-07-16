@@ -4,8 +4,20 @@ random_dat <- function(grid, slope, out){
     if(out == 0){
         vals <- runif(n = length(grid), min = 0.8, max = 1.2) * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.05)
     }
-    else{
+    else if(out == 1){
         vals <- runif(n = length(grid), min = 1, max = 1.4) * 1.2 * slope * args + rnorm(n = length(grid), mean = 0, sd = 0.1)
+    }
+    else if(out == 2){
+        vals <- 1 / (1 + exp(-3*(args - 0.5))) + rnorm(n = length(grid), mean = 0, sd = 0.05)
+    }
+    else if(out == 3){
+        vals <- 2 / (1 + exp(-3*args)) - 1 + rnorm(n = length(grid), mean = 0, sd = 0.05)
+    }
+    else if(out == 4){
+        vals <- (exp(args) - 1) / 1.7183 + rnorm(n = length(grid), mean = 0, sd = 0.05)
+    }
+    else{
+        vals <- runif(n = length(grid))
     }
     
     return(list(args = grid,
@@ -23,7 +35,7 @@ generate_set_2 <- function(){
     ids <- as.character(1:n)
 
     # Choose ~5% of observations as outliers
-    outliers <- rbinom(n = n, size = 1, prob = 0.05)
+    outliers <- sample(x = 0:5, size = n, prob = c(0.95, rep(0.01, times = 5)), replace = TRUE)
     
     # Choose number of measurements for each observation
     lengths <- sample(x = 10:100, size = n, replace = TRUE)
@@ -40,8 +52,8 @@ generate_set_2 <- function(){
     # Save data in random access format
     saveList(functions, "./data/Set_2/functional.llo")
     saveRDS(ids, "./data/Set_2/ids.RDS")
-    saveRDS(which(outliers == 1), "./data/Set_2/outliers.RDS")
-    return(list(data = functions, ids = ids, outliers = which(outliers == 1)))                 
+    saveRDS(which(outliers != 0), "./data/Set_2/outliers.RDS")
+    return(list(data = functions, ids = ids, outliers = which(outliers != 0)))                 
 }
 
 # bring into tidy format                     
