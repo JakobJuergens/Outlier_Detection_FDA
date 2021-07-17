@@ -133,9 +133,9 @@ server <- function(input, output, session) {
     if(input$SET != "set_1"){
       
     ggplot(data = plot_tibble) +
-      geom_line(aes(x = x, y = y, col = cert, group = ids), alpha = 100/length(unique(my_tibble()$ids))) +
-      #geom_line(data = plot_tibble[which(plot_tibble$ids == input$OBS_ID)],
-      #          aes(x = x, y = y), col = "black", lwd = 0.5) +
+      geom_line(aes(x = x, y = y, col = cert, group = ids), alpha = 50/length(unique(plot_tibble$ids[show_which()]))) +
+      geom_line(data = plot_tibble[which(plot_tibble$ids == input$OBS_ID),],
+                aes(x = x, y = y), col = "black", lwd = 0.5) +
       scale_color_gradient(low = "#0062ff", high = "#ff0000") +
       theme(text=element_text(size=16, family="Serif")) +
       xlim(ifelse(!is.na(input$L_BORDER), input$L_BORDER, 0), ifelse(!is.na(input$R_BORDER), input$R_BORDER, 1)) +
@@ -144,7 +144,7 @@ server <- function(input, output, session) {
     } else{
       
       ggplot(data = plot_tibble) +
-        geom_line(aes(x = x, y = y, col = !flagged, group = ids), alpha = 100/length(unique(my_tibble()$ids))) +
+        geom_line(aes(x = x, y = y, col = !flagged, group = ids), alpha = 50/length(unique(plot_tibble$ids[show_which()]))) +
         theme(text=element_text(size=16, family="Serif")) +
         xlim(ifelse(!is.na(input$L_BORDER), input$L_BORDER, 0), ifelse(!is.na(input$R_BORDER), input$R_BORDER, 1)) +
         guides(col = "none")  
