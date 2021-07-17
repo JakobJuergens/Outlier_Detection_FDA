@@ -60,7 +60,7 @@ tidify_1 <- function(data_set, ids){
                       
     # make fitting repetitions of ids                      
     ids <- unlist(map(.x = 1:500,
-                      .f = function(i) rep(ids[i], times = len[i]))) 
+                      .f = function(i) rep(ids[i], times = len[i])))                          
     
     # make into tibble                      
     tibbled <-  tibble(x = x_1, 
@@ -81,3 +81,10 @@ vis_1 <- function(tidy_1){
     
     p
 }
+                      
+# Create and save tibble for shiny app
+
+shinyfy_1 <- function(tidy_1){
+    
+    shiny_tibble <- cbind(tidy_1)
+}                      
