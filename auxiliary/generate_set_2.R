@@ -30,7 +30,7 @@ generate_set_2 <- function(){
     # Set seed for reproducibility
     set.seed(17203476)
 
-    # Choose comparratively small number of observations
+    # Choose comparatively large number of observations
     n <- 10000
     ids <- as.character(1:n)
 
