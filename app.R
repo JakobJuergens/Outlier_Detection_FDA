@@ -12,6 +12,8 @@ set_2_tibble <- readRDS(file = "data/Set_2/shiny_tibble.RDS")
 set_2_summary <- list(original = readRDS(file = "data/Set_2/outliers.RDS"))
 
 # set 3:
+set_3_tibble <- readRDS(file = "data/Set_3/shiny_tibble.RDS")
+set_3_summary <- list(original = readRDS(file = "data/Set_3/outliers.RDS"))
 
 header <- dashboardHeader(
   title = "Outlier Detection"
@@ -145,6 +147,8 @@ server <- function(input, output, session) {
       
       ggplot(data = plot_tibble) +
         geom_line(aes(x = x, y = y, col = !flagged, group = ids), alpha = 50/length(unique(plot_tibble$ids[show_which()]))) +
+        geom_line(data = plot_tibble[which(plot_tibble$ids == input$OBS_ID),],
+                  aes(x = x, y = y), col = "black", lwd = 0.5) +
         theme(text=element_text(size=16, family="Serif")) +
         xlim(ifelse(!is.na(input$L_BORDER), input$L_BORDER, 0), ifelse(!is.na(input$R_BORDER), input$R_BORDER, 1)) +
         guides(col = "none")  
