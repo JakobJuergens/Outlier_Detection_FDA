@@ -27,7 +27,7 @@ The method is explained an implemented in the Jupyter Notebook Project_Main.ipyn
 
 Even though I recommend using it locally due to a lengthy building time of the environment in Binder, the shiny app can be started using this badge:
 
-RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/)
+RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/) In case the page shows something like "shiny took too long to load", reload the page and it will work. The build process does not have to be repeated in that case.
 
 ## Acknowledgements
 I want to thank a few people that either helped in making this project possible or aided me in some other way.
