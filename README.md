@@ -6,7 +6,7 @@ This is the final project of the OSE data science course (summer semester 2021) 
 
 ## Project overview
 The main focus of this project is to develop a procedure to identify abnormal observations in sensor data collected during production processes. Each data point can be interpreted as a set of points where a function was observed.
-Therefore the whole problem can be approached from a standpoint of outlier classification in functional data. An approach which I chose as the basis of my project.
+Therefore the whole problem can be approached from a standpoint of outlier classification in functional data - An approach which I chose as the basis of my project.
 
 This project was made possible by a cooperation with Daimler AG. The main focus is on outlier classification in functional data.
 The algorithm implemented in Project_main.ipynb was taken from: 
@@ -27,7 +27,9 @@ The method is explained an implemented in the Jupyter Notebook Project_Main.ipyn
 
 Even though I recommend using it locally due to a lengthy building time of the environment in Binder, the shiny app can be started using this badge:
 
-RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/) In case the page shows something like "shiny took too long to load", reload the page and it will work. The build process does not have to be repeated in that case.
+RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/) 
+
+In case the page shows something like "shiny took too long to load", reload the page and it will work. The build process does not have to be repeated in that case.
 
 ## Acknowledgements
 I want to thank a few people that either helped in making this project possible or aided me in some other way.
