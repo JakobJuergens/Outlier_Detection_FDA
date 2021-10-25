@@ -1,8 +1,6 @@
 # Outlier Detection in Sensor Data using Functional Depth Measures
 
-This is the final project of the OSE data science course (summer semester 2021) by Jakob R. Jürgens.
-
-![ci](https://github.com/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/actions/workflows/ci.yml/badge.svg)
+This is the final project of the OSE Data Science course (summer semester 2021) and the OSE Scientific Computing course (winter semester 2021/2022) by Jakob R. Jürgens.
 
 ## Project overview
 The main focus of this project is to develop a procedure to identify abnormal observations in sensor data collected during production processes. Each data point can be interpreted as a set of points where a function was observed.
