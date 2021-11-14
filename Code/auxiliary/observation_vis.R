@@ -1,4 +1,4 @@
-sourceCpp('auxiliary/rcpp_functions.cpp')
+sourceCpp('Code/auxiliary/rcpp_functions.cpp')
 
 obs_vis <- function(){
     set.seed(12345)
