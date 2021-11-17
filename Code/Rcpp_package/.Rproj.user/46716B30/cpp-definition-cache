@@ -1,6 +1,6 @@
 [
     {
-        "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+        "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
         "file_last_write": 1634250798.0,
         "definitions": [
             {
@@ -8,7 +8,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "interpolate(double, double, double, double, double)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 10,
                 "column": 8
             },
@@ -17,7 +17,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "x_lneigh(Rcpp::NumericVector, double)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 17,
                 "column": 8
             },
@@ -26,7 +26,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "grid_approx_obs(Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericVector)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 34,
                 "column": 15
             },
@@ -35,7 +35,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "truncNormKernel(double)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 48,
                 "column": 8
             },
@@ -44,7 +44,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "quant(Rcpp::NumericVector, double)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 55,
                 "column": 8
             },
@@ -53,7 +53,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "func_norm(Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericVector)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 66,
                 "column": 8
             },
@@ -62,7 +62,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "hM_depth(Rcpp::NumericMatrix, Rcpp::NumericVector)",
-                "file": "/E/OneDrive/Studium/Master/Economics/3. Semester/OSE_Scientific_Computing/OSEproject/src/rcpp_function.cpp",
+                "file": "/E/OneDrive/Studium/Master/Economics/2. Semester/Microeconometrics_github/project/ose-data-science-course-projeect-JakobJuergens/Code/Rcpp_package/src/rcpp_function.cpp",
                 "line": 83,
                 "column": 15
             }

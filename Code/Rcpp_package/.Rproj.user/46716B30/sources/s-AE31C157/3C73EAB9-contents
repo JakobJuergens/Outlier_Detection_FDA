@@ -1,6 +1,0 @@
-library(arrow)
-library(tidyverse)
-
-data <- read_parquet("/E/data_local/Projekt_AMEIUS_Daten/schra.parquet", as_tibble = TRUE) %>% 
-  select(!time)
-

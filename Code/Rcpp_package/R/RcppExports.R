@@ -9,7 +9,3 @@ hM_depth <- function(valueMatrix, grid) {
     .Call(`_OSEproject_hM_depth`, valueMatrix, grid)
 }
 
-rcpp_hello_world <- function() {
-    .Call(`_OSEproject_rcpp_hello_world`)
-}
-
