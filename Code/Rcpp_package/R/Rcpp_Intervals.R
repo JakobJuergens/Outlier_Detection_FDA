@@ -1,7 +1,7 @@
 #' placeholder
 #'
 #'@param func_dat: list that contains the observations
-#'e ach observation is a list, that conatins two vectors of identical length: args and vals
+#' each observation is a list, that conatins two vectors of identical length: args and vals
 #'
 #'@return placeholder
 #'@export
@@ -22,7 +22,7 @@ measuring_int <- function(func_dat){
 unique_intervals <- function(measuring_intervals){
   
   # for finding unique entries transforming to a list is easier
-  interval_list <- map(.x = seq_len(nrow(x)), 
+  interval_list <- map(.x = seq_len(nrow(measuring_intervals)), 
                        .f = function(i) measuring_intervals[i,])
   
   # find unique entries                             

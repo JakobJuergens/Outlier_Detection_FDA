@@ -6,7 +6,8 @@
 #'@return placeholder
 #'@export
 grid_finder <- function(func_dat){
-  return(seq(0, 1, length.out = 100))
+  measuring_interval <- c(min(func_dat[[1]]$args), max(func_dat[[1]]$args))
+  return(seq(measuring_interval[1], measuring_interval[2], length.out = 30))
 }
 
 #' placeholder

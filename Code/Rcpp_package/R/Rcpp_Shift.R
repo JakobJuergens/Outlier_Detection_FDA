@@ -9,7 +9,7 @@ zero_observations <- function(func_dat){
   zeroed_func_dat <- map(.x = func_dat,
                          .f = function(fnc){
                            args = fnc$args - fnc$args[1]
-                           return(args = args, vals = fnc$vals)
+                           return(list(args = args, vals = fnc$vals))
                          })
   return(zeroed_func_dat)
 }
