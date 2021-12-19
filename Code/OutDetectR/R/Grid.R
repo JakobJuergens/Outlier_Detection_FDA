@@ -65,7 +65,7 @@ grid_approx_mat <- function(func_dat, grid){
                        .f = function(obs) obs$vals)
   # combine in matrix
   mat_approx <- matrix(data = unlist(approx_values),
-                       nrow = length(list_approx), ncols = length(grid),
+                       nrow = length(list_approx), ncol = length(grid),
                        byrow = TRUE)
   # return matrix
   return(mat_approx)

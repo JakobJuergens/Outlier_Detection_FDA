@@ -9,17 +9,17 @@ library(parallel)
 library(Rcpp)
 
 ### load my own library
-# install.packages('../OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')
+install.packages('../OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')
 library(OutDetectR)
 
 ### set up parameters
 # sample size for sampling procedure
 sample_size <- 100
+endanzug_path <- "~/F/data_local/Projekt_AMEIUS_Daten/"
 
 ### load real Endanzug-Data if possible
 real_data <- TRUE
 if (real_data) {
-  endanzug_path <- "~/F/data_local/Projekt_AMEIUS_Daten/"
   endanzug_data <- readRDS(file = paste0(endanzug_path, "schra.RDS"))
 }
 
@@ -127,9 +127,9 @@ OutDetectR::largeListify(
 cl <- makeForkCluster(detectCores() - 1)
 
 # try using the sampling procedure
-test_procedure <- OutDetectR::detection_sampling_wrap_z(
+test_procedure <- OutDetectR::stretch_sample_detection(
   cl = cl, list_path = paste0(endanzug_path, "test_red_data.llo"),
-  measuring_intervals = reduced_ints, n_obs = reduced_n, lambda = 1.2, n_samples = 100,
+  measuring_intervals = reduced_ints, lambda = 1.2, n_samples = 100,
   sample_size = 50, alpha = 0.05, B = 50, gamma = 0.05
 )
 

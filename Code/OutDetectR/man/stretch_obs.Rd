@@ -2,7 +2,7 @@
 % Please edit documentation in R/Stretch.R
 \name{stretch_obs}
 \alias{stretch_obs}
-\title{This function takes a functional observation func_obs and stretches it to 
+\title{This function takes a functional observation func_obs and stretches it to
 fit a given measuring interval}
 \usage{
 stretch_obs(func_obs, measuring_interval)
@@ -17,6 +17,6 @@ the start and end points of the desired measuring interval}
 placeholder
 }
 \description{
-This function takes a functional observation func_obs and stretches it to 
+This function takes a functional observation func_obs and stretches it to
 fit a given measuring interval
 }

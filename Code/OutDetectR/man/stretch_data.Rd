@@ -2,7 +2,7 @@
 % Please edit documentation in R/Stretch.R
 \name{stretch_data}
 \alias{stretch_data}
-\title{This function is a wrapper around stretch_obs. It takes a set of functional 
+\title{This function is a wrapper around stretch_obs. It takes a set of functional
 observations func_dat and stretches each observation to fit a given measuring interval}
 \usage{
 stretch_data(func_dat, measuring_interval)
@@ -18,6 +18,6 @@ the start and end points of the desired measuring interval}
 placeholder
 }
 \description{
-This function is a wrapper around stretch_obs. It takes a set of functional 
+This function is a wrapper around stretch_obs. It takes a set of functional
 observations func_dat and stretches each observation to fit a given measuring interval
 }
