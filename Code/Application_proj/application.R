@@ -9,12 +9,12 @@ library(parallel)
 library(Rcpp)
 
 ### load my own library
-install.packages('../OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')
+# install.packages('../OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')
 library(OutDetectR)
 
 ### set up parameters
 # sample size for sampling procedure
-sample_size <- 100
+sample_size <- 500
 endanzug_path <- "~/F/data_local/Projekt_AMEIUS_Daten/"
 
 ### load real Endanzug-Data if possible
@@ -29,7 +29,7 @@ vals <- endanzug_data$mArr_endanzug
 
 ### select subset to test the algorithm
 set.seed(42)
-n <- 10000
+n <- 50000
 test_set <- sort(
   sample(x = 1:dim(endanzug_data)[1], size = n, replace = FALSE)
 )
@@ -124,13 +124,15 @@ OutDetectR::largeListify(
 
 ### Use Sampling procedure for reduced data set
 # create cluster
-cl <- makeForkCluster(detectCores() - 1)
+cl <- makeForkCluster(5)
 
 # try using the sampling procedure
 test_procedure <- OutDetectR::stretch_sample_detection(
   cl = cl, list_path = paste0(endanzug_path, "test_red_data.llo"),
-  measuring_intervals = reduced_ints, lambda = 1.2, n_samples = 100,
-  sample_size = 50, alpha = 0.05, B = 50, gamma = 0.05
+  measuring_intervals = reduced_ints, lambda = 1.2, n_samples = 10,
+  sample_size = sample_size, alpha = 0.05, B = 50, gamma = 0.05
 )
 
 stopCluster(cl)
+
+saveRDS(test_procedure, file = '~/F/data_local/Projekt_AMEIUS_Daten/stretch_sample_test.RDS')

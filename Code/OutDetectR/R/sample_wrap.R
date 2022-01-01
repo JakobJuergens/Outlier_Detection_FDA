@@ -38,7 +38,7 @@ sample_wrap <- function(cl, list_path, indeces = NULL, n_samples, sample_size, a
   )
 
   # Determine how often each observation appeared in the samples and update the vector
-  freq_samples <- tabulate(unlist(sample_inds))
+  freq_samples <- tabulate(as.numeric(unlist(sample_inds)))
   num_samples[1:length(freq_samples)] <- num_samples[1:length(freq_samples)] + freq_samples
 
   # Perform the outlier classification procedure on the chosen samples parallelized
@@ -55,7 +55,7 @@ sample_wrap <- function(cl, list_path, indeces = NULL, n_samples, sample_size, a
   )
 
   # Determine how often each observation were flagged in the samples and update the vector
-  freq_outliers <- tabulate(unlist(sample_flagged_par))
+  freq_outliers <- tabulate(as.numeric(unlist(sample_flagged_par)))
   num_outliers[1:length(freq_outliers)] <- num_outliers[1:length(freq_outliers)] + freq_outliers
 
   # termine fraction of samples each observation was flagged as an outlier in

@@ -25,7 +25,7 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
   # find unique measuring intervals
   unique_intervals <- unique_intervals(interval_matrix = measuring_intervals)
   n_unique_int <- dim(unique_intervals)[1]
-  
+
   if (debug) {
     print(paste0("There are ", n_unique_int, " unique measuring intervals."))
   }
@@ -51,16 +51,63 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
       lambda = lambda, ids = tmp_ids
     )$ind
 
-    # use stretching and sampling procedure for those comparable sets
-    tmp_sample_res <- stretch_sample_wrap(
-      cl = cl, list_path = list_path, main_interval = current_interval,
-      indeces = comparable, n_samples = n_samples, sample_size = sample_size, 
-      alpha = alpha, B = B, gamma = gamma
-    )
+    # find number of comparable observations
+    n_comparables <- length(comparable)
 
-    # update the vectors
-    num_samples[comparable] <- num_samples[comparable] + tmp_sample_res$num_samples
-    num_outliers[comparable] <- num_outliers[comparable] + tmp_sample_res$num_outliers
+    # switch cases if sample_size > n_comparables
+    if (n_comparables > sample_size) {
+
+      # determine n_samples dynamically
+      # n_samples <- sampling_number(n_comparables = n_comparables, sample_size = sample_size)
+
+      # use stretching and sampling procedure for those comparable sets
+      tmp_sample_res <- stretch_sample_wrap(
+        cl = cl, list_path = list_path, main_interval = current_interval,
+        indeces = comparable, n_samples = n_samples, sample_size = sample_size,
+        alpha = alpha, B = B, gamma = gamma
+      )
+
+      # update the vectors
+      num_samples[comparable] <- num_samples[comparable] + tmp_sample_res$num_samples
+      num_outliers[comparable] <- num_outliers[comparable] + tmp_sample_res$num_outliers
+    } else {
+
+      # determine factor for num_samples and num_outliers
+      tmp_factor <- sampling_factor(
+        n_comparables = n_comparables, sample_size = sample_size, n_samples = n_samples
+      )
+
+      # load data from large list
+      tmp_dat <- readList(file = list_path, index = comparable)
+
+      # stretch data to main interval
+      tmp_stretch <- stretch_data(
+        func_dat = tmp_dat, measuring_interval = current_interval
+      )
+
+      # determine grid for approximation
+      tmp_grid <- grid_finder(func_dat = tmp_stretch)
+
+      # perform grid approximation and transformation to matrix
+      tmp_grid_dat <- grid_approx_mat(func_dat = tmp_stretch, grid = tmp_grid)
+
+      # use detection procedure to identify outliers
+      tmp_res <- outlier_detection(
+        matr_dat = tmp_grid_dat, alpha = alpha,
+        B = B, gamma = gamma, ids = comparable, # is comparable right here?
+        grid = tmp_grid
+      )
+
+      # transform for updating the vectors
+
+      # update vectors accordingly
+      num_samples[comparable] <- num_samples[comparable] + tmp_factor
+      num_outliers[comparable] <- num_outliers[comparable] + tmp_factor # *
+    }
+
+    # manually run gc() as there seems to be a problem with memory usage
+    # rm(tmp_sample_res, comparable)
+    # gc()
   }
 
   # calculate the relative frequency of outliers
