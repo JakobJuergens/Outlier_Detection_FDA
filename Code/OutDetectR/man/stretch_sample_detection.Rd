@@ -9,8 +9,9 @@ stretch_sample_detection(
   list_path,
   lambda,
   measuring_intervals,
-  n_samples,
+  n_samples = NULL,
   sample_size,
+  expn = NULL,
   alpha,
   B,
   gamma,
@@ -29,6 +30,9 @@ there are more comparable counterparts than the parameter sample_size}
 \item{n_samples:}{number of samples to use}
 
 \item{sample_size:}{number of observations to use in each sample}
+
+\item{expn:}{Chosen expected number of draws any observation appears in per
+unique interval it is comparable to.}
 
 \item{alpha:}{quantile of least deep observations to drop before bootstrapping
 (in approximation of C)}

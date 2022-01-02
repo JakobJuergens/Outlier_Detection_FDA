@@ -7,6 +7,8 @@
 #' @param lambda: allowed stretching parameter
 #' @param n_samples: number of samples to use
 #' @param sample_size: number of observations to use in each sample
+#' @param expn: Chosen expected number of draws any observation appears in per
+#' unique interval it is comparable to.
 #' @param alpha: quantile of least deep observations to drop before bootstrapping
 #' (in approximation of C)
 #' @param B: number of smoothed bootstrap samples to use (in approximation of C)
@@ -16,7 +18,7 @@
 #' @return placeholder
 #' @export
 stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
-                                     n_samples, sample_size,
+                                     n_samples = NULL, sample_size, expn = NULL,
                                      alpha, B, gamma, debug = FALSE) {
   # get number of observations in list
   n_obs <- getListLength(file = list_path)
@@ -41,7 +43,8 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
 
     # print out current measuring interval
     if (debug) {
-      print(paste0("Current Interval: ", current_interval))
+      print(paste0("Interval ", i, " out of ", n_unique_int))
+      print(paste0("Current Interval: ", current_interval[1], " to ", current_interval[2]))
     }
 
     # find comparable observations
@@ -54,11 +57,26 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
     # find number of comparable observations
     n_comparables <- length(comparable)
 
+    # determine n_samples dynamically
+    if (missing(n_samples)) {
+      if (missing(expn)) {
+        stop("Either n_samples or expn has to be provided.")
+      } else {
+        n_samples <- sampling_number(
+          n_comparables = n_comparables,
+          sample_size = sample_size,
+          expn = expn
+        )
+      }
+    }
+
+    # print out number of comparables
+    if (debug) {
+      print(paste0("Number of comparable observations: ", n_comparables))
+    }
+
     # switch cases if sample_size > n_comparables
     if (n_comparables > sample_size) {
-
-      # determine n_samples dynamically
-      # n_samples <- sampling_number(n_comparables = n_comparables, sample_size = sample_size)
 
       # use stretching and sampling procedure for those comparable sets
       tmp_sample_res <- stretch_sample_wrap(
@@ -66,16 +84,25 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
         indeces = comparable, n_samples = n_samples, sample_size = sample_size,
         alpha = alpha, B = B, gamma = gamma
       )
-
+      
+      # print number of outliers found in iteration
+      if (debug) {
+        print(paste0("Number of outliers: ", length(which(tmp_sample_res$num_outliers != 0))))
+      }
+      
       # update the vectors
       num_samples[comparable] <- num_samples[comparable] + tmp_sample_res$num_samples
       num_outliers[comparable] <- num_outliers[comparable] + tmp_sample_res$num_outliers
     } else {
 
       # determine factor for num_samples and num_outliers
-      tmp_factor <- sampling_factor(
-        n_comparables = n_comparables, sample_size = sample_size, n_samples = n_samples
-      )
+      if (missing(expn)) {
+        tmp_factor <- sampling_factor(
+          n_comparables = n_comparables, sample_size = sample_size, n_samples = n_samples
+        )
+      } else {
+        tmp_factor <- expn
+      }
 
       # load data from large list
       tmp_dat <- readList(file = list_path, index = comparable)
@@ -96,13 +123,16 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
         matr_dat = tmp_grid_dat, alpha = alpha,
         B = B, gamma = gamma, ids = comparable, # is comparable right here?
         grid = tmp_grid
-      )
+      )$outlier_ids
 
-      # transform for updating the vectors
-
+      # print number of outliers found in iteration
+      if (debug) {
+        print(paste0("Number of outliers: ", length(tmp_res)))
+      }
+      
       # update vectors accordingly
       num_samples[comparable] <- num_samples[comparable] + tmp_factor
-      num_outliers[comparable] <- num_outliers[comparable] + tmp_factor # *
+      num_outliers[tmp_res] <- num_outliers[tmp_res] + tmp_factor
     }
 
     # manually run gc() as there seems to be a problem with memory usage

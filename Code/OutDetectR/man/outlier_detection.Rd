@@ -20,7 +20,16 @@ outlier_detection(
 \item{alpha:}{quantile of least deep observations to drop before bootstrapping
 (in approximation of C - optional if C is specified)}
 
-\item{:}{C: should be provided. Otherwise C will be approximated in each step of the iteration}
+\item{B:}{number of smoothed bootstrap samples to use
+(in approximation of C - optional if C is specified)}
+
+\item{gamma:}{tuning parameter for smoothed bootstrap}
+
+\item{ids:}{identifiers of individual observations}
+
+\item{grid:}{grid used in approximation of matr_dat}
+
+\item{C:}{should be provided. Otherwise C will be approximated in each step of the iteration}
 }
 \value{
 placeholder

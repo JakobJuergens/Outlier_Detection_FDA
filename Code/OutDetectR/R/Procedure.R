@@ -102,12 +102,12 @@ outlier_iteration <- function(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, 
 #' @param matr_dat: data in matrix form - each row contains the grid approximations of one observation
 #' @param alpha: quantile of least deep observations to drop before bootstrapping
 #' (in approximation of C - optional if C is specified)
-#' @param: B: number of smoothed bootstrap samples to use
+#' @param B: number of smoothed bootstrap samples to use
 #' (in approximation of C - optional if C is specified)
-#' @param: gamma: tuning parameter for smoothed bootstrap
-#' @param: ids: identifiers of individual observations
-#' @param: grid: grid used in approximation of matr_dat
-#' @param: C: should be provided. Otherwise C will be approximated in each step of the iteration
+#' @param gamma: tuning parameter for smoothed bootstrap
+#' @param ids: identifiers of individual observations
+#' @param grid: grid used in approximation of matr_dat
+#' @param C: should be provided. Otherwise C will be approximated in each step of the iteration
 #'
 #' @return placeholder
 #' @export
