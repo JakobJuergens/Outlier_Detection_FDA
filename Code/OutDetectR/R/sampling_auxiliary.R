@@ -26,7 +26,7 @@ sampling_number <- function(n_comparables, sample_size, expn) {
   
   # calculate number of number of samples necessary for an expected number
   # of occurences leq expn
-  n_samples <- ceiling(expn/prob_each_sample)
+  n_samples <- ceiling(expn / prob_each_sample)
   
   # return n_samples
   return(n_samples)

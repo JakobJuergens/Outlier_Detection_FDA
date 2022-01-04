@@ -20,6 +20,11 @@
 stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
                                      n_samples = NULL, sample_size, expn = NULL,
                                      alpha, B, gamma, debug = FALSE) {
+  # Set up boolean for later
+  if(missing(n_samples)){n_sample_bool <- FALSE} else{
+    n_sample_bool <- TRUE
+  }
+  
   # get number of observations in list
   n_obs <- getListLength(file = list_path)
   tmp_ids <- 1:n_obs
@@ -58,7 +63,7 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
     n_comparables <- length(comparable)
 
     # determine n_samples dynamically
-    if (missing(n_samples)) {
+    if (n_sample_bool == FALSE) {
       if (missing(expn)) {
         stop("Either n_samples or expn has to be provided.")
       } else {
@@ -70,9 +75,10 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
       }
     }
 
-    # print out number of comparables
+    # print out number of comparables and chosen number of samples
     if (debug) {
       print(paste0("Number of comparable observations: ", n_comparables))
+      print(paste0("Number of samples: ", n_samples))
     }
 
     # switch cases if sample_size > n_comparables
