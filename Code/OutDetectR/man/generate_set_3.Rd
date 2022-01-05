@@ -4,7 +4,10 @@
 \alias{generate_set_3}
 \title{Placeholder}
 \usage{
-generate_set_3()
+generate_set_3(n_obs = 30000)
+}
+\arguments{
+\item{n_obs:}{number of observations to be generated}
 }
 \value{
 Placeholder

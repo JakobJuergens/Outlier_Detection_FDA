@@ -22,15 +22,17 @@ random_dat_1 <- function(grid, slope, out) {
 
 #' Placeholder
 #'
+#' @param n_obs: number of observations to be generated
+#'
 #' @return Placeholder
 #' @export
-generate_set_1 <- function() {
+generate_set_1 <- function(n_obs = 500) {
 
   # Set seed for reproducibility
   set.seed(17203476)
 
   # Choose comparratively small number of observations
-  n <- 500
+  n <- n_obs
   ids <- as.character(1:n)
 
   # Choose ~5% of observations as outliers
@@ -58,9 +60,9 @@ generate_set_1 <- function() {
 
 #' Placeholder
 #'
-#' @param grid:
-#' @param slope:
-#' @param out:
+#' @param grid: Grid where the observations take palce
+#' @param slope: Slope parameter for the generated curves
+#' @param out: Vector conatining zeroes where no outlier should be generated 
 #'
 #' @return Placeholder
 random_dat_2 <- function(grid, slope, out){
@@ -90,15 +92,17 @@ random_dat_2 <- function(grid, slope, out){
 
 #' Placeholder
 #'
+#' @param n_obs: number of observations to be generated
+#'
 #' @return Placeholder
 #' @export
-generate_set_2 <- function(){
+generate_set_2 <- function(n_obs = 10000){
   
   # Set seed for reproducibility
   set.seed(17203476)
   
   # Choose comparatively large number of observations
-  n <- 10000
+  n <- n_obs
   ids <- as.character(1:n)
   
   # Choose ~5% of observations as outliers
@@ -121,9 +125,9 @@ generate_set_2 <- function(){
 
 #' Placeholder
 #'
-#' @param grid:
-#' @param slope:
-#' @param out:
+#' @param grid: Grid where the observations take palce
+#' @param slope: Slope parameter for the generated curves
+#' @param out: Vector conatining zeroes where no outlier should be generated 
 #'
 #' @return Placeholder
 random_dat_3 <- function(grid, slope, out){
@@ -153,15 +157,17 @@ random_dat_3 <- function(grid, slope, out){
 
 #' Placeholder
 #'
+#' @param n_obs: number of observations to be generated
+#'
 #' @return Placeholder
 #' @export
-generate_set_3 <- function(){
+generate_set_3 <- function(n_obs = 30000){
   
   # Set seed for reproducibility
   set.seed(17203476)
   
   # Choose comparatively large number of observations
-  n <- 30000
+  n <- n_obs
   ids <- as.character(1:n)
   
   # Choose ~5% of observations as outliers

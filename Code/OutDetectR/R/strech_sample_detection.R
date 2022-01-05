@@ -58,7 +58,7 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
       measuring_intervals = measuring_intervals,
       lambda = lambda, ids = tmp_ids
     )$ind
-
+    
     # find number of comparable observations
     n_comparables <- length(comparable)
 
@@ -118,19 +118,11 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
         func_dat = tmp_dat, measuring_interval = current_interval
       )
 
-      # determine grid for approximation
-      tmp_grid <- grid_finder(func_dat = tmp_stretch)
-
-      # perform grid approximation and transformation to matrix
-      tmp_grid_dat <- grid_approx_mat(func_dat = tmp_stretch, grid = tmp_grid)
-
       # use detection procedure to identify outliers
-      tmp_res <- outlier_detection(
-        matr_dat = tmp_grid_dat, alpha = alpha,
-        B = B, gamma = gamma, ids = comparable, # is comparable right here?
-        grid = tmp_grid
-      )$outlier_ids
+      tmp_res <- detection_wrap(func_dat = tmp_stretch, ids = comparable, 
+                                alpha = alpha, B = B, gamma = gamma)$outlier_ids
 
+      
       # print number of outliers found in iteration
       if (debug) {
         print(paste0("Number of outliers: ", length(tmp_res)))

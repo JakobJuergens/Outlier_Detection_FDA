@@ -17,7 +17,7 @@ library(OutDetectR)
 sample_size <- 1000
 
 # generate synthetic test set
-test_obj <- generate_set_2()
+test_obj <- generate_set_2(n_obs = 10000)
 
 # save in largeList format on NvME SSD
 OutDetectR::largeListify(
@@ -51,15 +51,18 @@ test_procedure <- OutDetectR::stretch_sample_detection(
 
 stopCluster(cl)
 
+saveRDS(test_procedure_synth, file = 'Results/synth_sample.RDS')
+
 # check full set at once
 full_test <- OutDetectR::detection_wrap(func_dat = test_obj$data, ids = test_obj$ids, 
                                         alpha = 0.05, B = 100, gamma = 0.05)
 
 
 # check a random sample of size sample size
-rand_smpl <- sample(x = 1:10000, size = sample_size, replace = FALSE)
+test_size <- 250
+rand_smpl <- sample(x = 1:10000, size = test_size, replace = FALSE)
 red_dat <- test_obj$data[rand_smpl]
 red_ids <- test_obj$ids[rand_smpl]
 
-part_test <- OutDetectR::detection_wrap(func_dat = red_dat, ids = red_ids, 
+part_test <- OutDetectR::detection_wrap(func_dat = red_dat, ids = 1:test_size, 
                                         alpha = 0.05, B = 100, gamma = 0.05)

@@ -101,7 +101,9 @@ stretch_sample_helper <- function(list_path, main_interval,
   # in a tryCatch statement as the procedure creates notamatrix errors in random cases
   sample_flagged <- tryCatch(
     {
-      detection_wrap(func_dat = sample_dat, ids = ids, alpha = alpha, B = B, gamma = gamma)$ids
+      detection_wrap(
+        func_dat = sample_dat, ids = ids, 
+        alpha = alpha, B = B, gamma = gamma)$outlier_ids
     },
     error = function(cond) {
       return(list(outlier_ids = c(), outlier_ind = c()))

@@ -7,7 +7,11 @@
 random_dat_3(grid, slope, out)
 }
 \arguments{
-\item{out:}{}
+\item{grid:}{Grid where the observations take palce}
+
+\item{slope:}{Slope parameter for the generated curves}
+
+\item{out:}{Vector conatining zeroes where no outlier should be generated}
 }
 \value{
 Placeholder
