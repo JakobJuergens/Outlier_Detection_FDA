@@ -25,18 +25,48 @@ detection_wrap <- function(func_dat, ids, alpha, B, gamma = 0.05) {
   # Approximate by linear interpolation
   matr_dat <- grid_approx_mat(func_dat = func_dat, grid = grid)
 
-  # calculate h-modal depths
-  fdepths <- hM_depth(valueMatrix = matr_dat, grid = grid)
+  # tmp redo variable
+  redos <- 0
+  
+  while(redos < 10){
+    # calculate h-modal depths
+    fdepths <- hM_depth(valueMatrix = matr_dat, grid = grid)
+    if(all(is.na(fdepths))){
+      redos <- redos + 1
+    } else{
+      redos <- 10
+    }
+  }
+
+  # create temporary variable indicating if error occured
+  n_error <- 0
 
   # Approximate a value of C
-  C_appr <- approx_C(
-    matr_dat = matr_dat, fdepths = fdepths, alpha = alpha,
-    B = B, gamma = gamma, grid = grid
-  )
+  while (n_error < 10) {
+    add <- FALSE
+    C_appr <- tryCatch(
+      {
+        approx_C(
+          matr_dat = matr_dat, fdepths = fdepths, alpha = alpha,
+          B = B, gamma = gamma, grid = grid
+        )
+      },
+      error = function(cond) {
+        warning(cond)
+        add <<- TRUE
+      }
+    )
+    if(add == TRUE){
+      n_error <- n_error + 1
+    } else{
+      n_error <- 10
+    }
+  }
 
   # Perform the outlier classification procedure for the approximated value of C
   flagged <- outlier_detection(
-    matr_dat = matr_dat, ids = ids, grid = grid, C = C_appr)
+    matr_dat = matr_dat, ids = ids, grid = grid, C = C_appr
+  )
 
   # Return the list of outlier ids and outlier indices - these are useful in different cases
   # contains the objects outlier_ids and outlier_ind

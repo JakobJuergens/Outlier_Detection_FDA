@@ -12,20 +12,31 @@
 #' @export
 approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
 
+  # set smoothing mode to on
+  smoothing <- TRUE
   # infer number of observations from length of depth vector
   n <- length(fdepths)
   # Get number of elements in grid
   grid_length <- length(grid)
   # determine threshold to drop observations with lowest depth values
-  depth_thr <- quantile(x = fdepths, probs = alpha)
+  depth_thr <- tryCatch(
+    {
+      quantile(x = fdepths, probs = alpha, na.rm = FALSE)
+    },
+    error = function(cond){
+      stop(fdepths, 'approx_C - I ran into this error!')
+    }
+  )
   # drop observations for bootstrapping
   matr_dat_red <- matr_dat[fdepths >= depth_thr, ]
+
   n_red <- dim(matr_dat_red)[1]
 
   # Determine vcov-matrix for smoothed bootstrapping
   Sigma_x <- cov(matr_dat_red)
-  my_vcov <- gamma * Sigma_x
 
+  my_vcov <- gamma * Sigma_x
+  
   # Draw bootstrap samples from data set
   fsamples <- map(
     .x = 1:B,
@@ -53,7 +64,7 @@ approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
   # Calculate first percentile from depths of smoothed bootstrap samples
   one_perc_quantiles <- unlist(map(
     .x = bootstrap_depths,
-    .f = function(sample) quantile(sample, probs = 0.01)
+    .f = function(sample) quantile(sample, probs = 0.01, na.rm = FALSE)
   ))
 
   # return median of first percentiles

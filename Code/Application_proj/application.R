@@ -12,6 +12,8 @@ library(Rcpp)
 install.packages('../OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')
 library(OutDetectR)
 
+version_check()
+
 ### set up parameters
 # sample size for sampling procedure
 sample_size <- 1000
@@ -29,10 +31,13 @@ vals <- endanzug_data$mArr_endanzug
 
 ### select subset to test the algorithm
 set.seed(42)
-n <- 25000
+n <- 20000
 test_set <- sort(
   sample(x = 1:dim(endanzug_data)[1], size = n, replace = FALSE)
 )
+
+### save test indexes
+saveRDS(test_set, file = '~/F/data_local/Projekt_AMEIUS_Daten/test_ids.RDS')
 
 ### extract corresponding grids, vals and ids
 test_grids <- grids[test_set]
@@ -51,21 +56,14 @@ test_data_zero <- OutDetectR::zero_data(test_data)
 ### get measuring intervals from test data
 test_ints <- OutDetectR::measuring_int_mat(test_data_zero)
 
-### reduce data set to the observations that have a sufficient number of comparable
-# observations for sampling procedure
-reduced_data <- test_data #[inds]
-reduced_ints <- test_ints #[inds, ]
-reduced_ids <- test_ids #[inds, ][[1]]
-reduced_n <- n #length(inds)
-
 ### find unique measuring intervals in data set
-unique_intervals <- OutDetectR::unique_intervals(reduced_ints)
+unique_intervals <- OutDetectR::unique_intervals(test_ints)
 
 ### save data as largeList for further processing
 # changed to different folder to improve IO performance
 # M.2 NvME SSD instead of Harddrive
 OutDetectR::largeListify(
-  func_dat = reduced_data,
+  func_dat = test_data,
   path = '~/Documents/tmp_data/test_data.llo'
     #paste0(endanzug_path, "test_red_data.llo")
 )
@@ -83,8 +81,8 @@ clusterCall(cl = cl, fun = function(i) {
 # try using the sampling procedure
 test_procedure <- OutDetectR::stretch_sample_detection(
   cl = cl, list_path = '~/Documents/tmp_data/test_data.llo',
-  measuring_intervals = reduced_ints, lambda = 1.05, # n_samples = 10,
-  sample_size = sample_size, expn = 5, alpha = 0.05, B = 100, gamma = 0.05,
+  measuring_intervals = test_ints, lambda = 1.05, # n_samples = 10,
+  sample_size = sample_size, expn = 7, alpha = 0.05, B = 50, gamma = 0.05,
   debug = TRUE
 )
 

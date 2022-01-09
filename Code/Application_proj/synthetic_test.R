@@ -12,12 +12,16 @@ library(Rcpp)
 install.packages('../OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')
 library(OutDetectR)
 
+version_check()
+
 ### set up parameters
 # sample size for sampling procedure
-sample_size <- 1000
+sample_size <- 100
 
 # generate synthetic test set
-test_obj <- generate_set_2(n_obs = 10000)
+test_obj <- generate_set_2(n_obs = 1000)
+
+saveRDS(test_obj, file = 'Results/synth_input.RDS')
 
 # save in largeList format on NvME SSD
 OutDetectR::largeListify(
@@ -51,12 +55,14 @@ test_procedure <- OutDetectR::stretch_sample_detection(
 
 stopCluster(cl)
 
-saveRDS(test_procedure_synth, file = 'Results/synth_sample.RDS')
+saveRDS(test_procedure, file = 'Results/synth_sample.RDS')
 
 # check full set at once
 full_test <- OutDetectR::detection_wrap(func_dat = test_obj$data, ids = test_obj$ids, 
                                         alpha = 0.05, B = 100, gamma = 0.05)
 
+
+saveRDS(full_test, file = 'Results/synth_full.RDS')
 
 # check a random sample of size sample size
 test_size <- 250

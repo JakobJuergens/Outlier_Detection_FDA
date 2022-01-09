@@ -21,10 +21,12 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
                                      n_samples = NULL, sample_size, expn = NULL,
                                      alpha, B, gamma, debug = FALSE) {
   # Set up boolean for later
-  if(missing(n_samples)){n_sample_bool <- FALSE} else{
+  if (missing(n_samples)) {
+    n_sample_bool <- FALSE
+  } else {
     n_sample_bool <- TRUE
   }
-  
+
   # get number of observations in list
   n_obs <- getListLength(file = list_path)
   tmp_ids <- 1:n_obs
@@ -46,6 +48,9 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
   for (i in 1:n_unique_int) {
     current_interval <- unique_intervals[i, ]
 
+    # set fail counter to 0 update with try catch procedure
+    fail_counter <- 0
+
     # print out current measuring interval
     if (debug) {
       print(paste0("Interval ", i, " out of ", n_unique_int))
@@ -58,7 +63,7 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
       measuring_intervals = measuring_intervals,
       lambda = lambda, ids = tmp_ids
     )$ind
-    
+
     # find number of comparable observations
     n_comparables <- length(comparable)
 
@@ -90,12 +95,7 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
         indeces = comparable, n_samples = n_samples, sample_size = sample_size,
         alpha = alpha, B = B, gamma = gamma
       )
-      
-      # print number of outliers found in iteration
-      if (debug) {
-        print(paste0("Number of outliers: ", length(which(tmp_sample_res$num_outliers != 0))))
-      }
-      
+
       # update the vectors
       num_samples[comparable] <- num_samples[comparable] + tmp_sample_res$num_samples
       num_outliers[comparable] <- num_outliers[comparable] + tmp_sample_res$num_outliers
@@ -110,32 +110,31 @@ stretch_sample_detection <- function(cl, list_path, lambda, measuring_intervals,
         tmp_factor <- expn
       }
 
-      # load data from large list
-      tmp_dat <- readList(file = list_path, index = comparable)
+      if (n_comparables == 1) {
+        # if no other comparable observation exists classify
+        # observation as outlier
+        num_samples[comparable] <- num_samples[comparable] + tmp_factor
+        num_outliers[comparable] <- num_outliers[comparable] + tmp_factor
+      } else {
+        # load data from large list
+        tmp_dat <- readList(file = list_path, index = comparable)
 
-      # stretch data to main interval
-      tmp_stretch <- stretch_data(
-        func_dat = tmp_dat, measuring_interval = current_interval
-      )
+        # stretch data to main interval
+        tmp_stretch <- stretch_data(
+          func_dat = tmp_dat, measuring_interval = current_interval
+        )
 
-      # use detection procedure to identify outliers
-      tmp_res <- detection_wrap(func_dat = tmp_stretch, ids = comparable, 
-                                alpha = alpha, B = B, gamma = gamma)$outlier_ids
+        # use detection procedure to identify outliers
+        tmp_res <- detection_wrap(
+          func_dat = tmp_stretch, ids = comparable,
+          alpha = alpha, B = B, gamma = gamma
+        )$outlier_ids
 
-      
-      # print number of outliers found in iteration
-      if (debug) {
-        print(paste0("Number of outliers: ", length(tmp_res)))
+        # update vectors accordingly
+        num_samples[comparable] <- num_samples[comparable] + tmp_factor
+        num_outliers[tmp_res] <- num_outliers[tmp_res] + tmp_factor
       }
-      
-      # update vectors accordingly
-      num_samples[comparable] <- num_samples[comparable] + tmp_factor
-      num_outliers[tmp_res] <- num_outliers[tmp_res] + tmp_factor
     }
-
-    # manually run gc() as there seems to be a problem with memory usage
-    # rm(tmp_sample_res, comparable)
-    # gc()
   }
 
   # calculate the relative frequency of outliers
