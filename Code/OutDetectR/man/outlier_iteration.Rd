@@ -2,7 +2,9 @@
 % Please edit documentation in R/Procedure.R
 \name{outlier_iteration}
 \alias{outlier_iteration}
-\title{placeholder}
+\title{This function performs one iteration of the algorithm, including the 
+calculation of functional depths, the approximation of C and the 
+flagging of observations with depths lower than C}
 \usage{
 outlier_iteration(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, C = NULL)
 }
@@ -18,5 +20,7 @@ outlier_iteration(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, C = NULL)
 placeholder
 }
 \description{
-placeholder
+This function performs one iteration of the algorithm, including the 
+calculation of functional depths, the approximation of C and the 
+flagging of observations with depths lower than C
 }

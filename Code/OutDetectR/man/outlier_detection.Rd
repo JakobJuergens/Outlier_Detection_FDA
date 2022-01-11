@@ -2,7 +2,8 @@
 % Please edit documentation in R/Procedure.R
 \name{outlier_detection}
 \alias{outlier_detection}
-\title{placeholder}
+\title{This function serves as a wrapper for outlier_iteration and iterates the 
+ process until no new observations are flagged.}
 \usage{
 outlier_detection(
   matr_dat,
@@ -35,5 +36,6 @@ outlier_detection(
 placeholder
 }
 \description{
-placeholder
+This function serves as a wrapper for outlier_iteration and iterates the 
+ process until no new observations are flagged.
 }

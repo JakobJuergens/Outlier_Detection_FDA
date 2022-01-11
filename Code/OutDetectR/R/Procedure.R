@@ -9,7 +9,6 @@
 #' @param grid: grid used in approximation of matr_dat
 #'
 #' @return placeholder
-#' @export
 approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
 
   # set smoothing mode to on
@@ -71,7 +70,9 @@ approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
   return(median(one_perc_quantiles))
 }
 
-#' placeholder
+#' This function performs one iteration of the algorithm, including the 
+#' calculation of functional depths, the approximation of C and the 
+#' flagging of observations with depths lower than C
 #'
 #' @param matr_dat: data in matrix form - each row contains the grid approximations of one observation
 #' @param alpha: quantile of least deep observations to drop before bootstrapping
@@ -84,7 +85,6 @@ approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
 #' @param: C: should be provided. Otherwise C will be approximated in each step of the iteration
 #'
 #' @return placeholder
-#' @export
 outlier_iteration <- function(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, C = NULL) {
 
   # Calculating functional depths using a function from ./auxiliary/Rcpp_functions.cpp
@@ -108,7 +108,8 @@ outlier_iteration <- function(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, 
   ))
 }
 
-#' placeholder
+#'  This function serves as a wrapper for outlier_iteration and iterates the 
+#'  process until no new observations are flagged.
 #'
 #' @param matr_dat: data in matrix form - each row contains the grid approximations of one observation
 #' @param alpha: quantile of least deep observations to drop before bootstrapping
