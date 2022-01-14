@@ -23,5 +23,4 @@ largeListify <- function(func_dat, path){
       message(cond)
     }
   )
-  
 }
