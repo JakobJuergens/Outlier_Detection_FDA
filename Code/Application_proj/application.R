@@ -63,7 +63,7 @@ unique_intervals <- OutDetectR::unique_intervals(test_ints)
 # changed to different folder to improve IO performance
 # M.2 NvME SSD instead of Harddrive
 OutDetectR::largeListify(
-  func_dat = test_data,
+  func_dat = test_data_zero,
   path = '~/Documents/tmp_data/test_data.llo'
     #paste0(endanzug_path, "test_red_data.llo")
 )
