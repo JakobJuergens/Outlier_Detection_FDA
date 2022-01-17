@@ -190,10 +190,6 @@ generate_set_3 <- function(n_obs = 30000){
   # Create observations
   functions <- map(.x = 1:n,
                    .f = function(i) random_dat_3(grid = grids[[i]], slope = 1.02, out = outliers[i]))
-  
-  # Save data in random access format
-  saveList(functions, "./data/Set_3/functional.llo")
-  saveRDS(ids, "./data/Set_3/ids.RDS")
-  saveRDS(which(outliers != 0), "./data/Set_3/outliers.RDS")
+
   return(list(data = functions, ids = ids, outliers = which(outliers != 0)))
 }
