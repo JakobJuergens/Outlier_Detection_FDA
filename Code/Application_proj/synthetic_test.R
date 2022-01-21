@@ -48,7 +48,7 @@ clusterCall(cl = cl, fun = function(i) {
 # try using the sampling procedure
 test_procedure <- OutDetectR::stretch_sample_detection(
   cl = cl, list_path = '~/Documents/tmp_data/synth_data.llo',
-  measuring_intervals = synth_ints, lambda = 1.05, # n_samples = 10,
+  measuring_intervals = synth_ints, lambda = 1.05,
   sample_size = sample_size, expn = 5, alpha = 0.05, B = 100, gamma = 0.05,
   debug = TRUE
 )
@@ -63,12 +63,3 @@ full_test <- OutDetectR::detection_wrap(func_dat = test_obj$data, ids = test_obj
 
 
 saveRDS(full_test, file = 'Results/synth_full.RDS')
-
-# check a random sample of size sample size
-test_size <- 250
-rand_smpl <- sample(x = 1:10000, size = test_size, replace = FALSE)
-red_dat <- test_obj$data[rand_smpl]
-red_ids <- test_obj$ids[rand_smpl]
-
-part_test <- OutDetectR::detection_wrap(func_dat = red_dat, ids = 1:test_size, 
-                                        alpha = 0.05, B = 100, gamma = 0.05)

@@ -13,7 +13,7 @@ tidify_3 <- function(data_set, ids){
                       .f = function(fun) length(fun$args))) 
                       
     # make fitting repetitions of ids                      
-    ids <- unlist(map(.x = 1:30000,
+    ids <- unlist(map(.x = 1:10000,
                       .f = function(i) rep(ids[i], times = len[i]))) 
     
     # make into tibble                      
