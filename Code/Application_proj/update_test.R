@@ -19,10 +19,10 @@ version_check()
 sample_size <- 250
 
 # generate synthetic test set
-test_obj <- generate_set_3(n_obs = 10000)
+test_obj <- readRDS(file = 'Results/synth_input3.RDS')
 
 # generate new observation
-new_obj <- generate_set_3(n_obs = 1)$data[[1]]
+new_obj <- generate_set_3(n_obs = 1)
 
 # get measuring intervals
 synth_ints <- OutDetectR::measuring_int_mat(test_obj$data)
@@ -31,7 +31,7 @@ synth_ints <- OutDetectR::measuring_int_mat(test_obj$data)
 unique_intervals <- OutDetectR::unique_intervals(synth_ints)
 
 # load results from original test
-test_procedure <- readRDS(file = 'Results/synth_sample.RDS')
+test_procedure <- readRDS(file = 'Results/synth_sample3.RDS')
 
 # create cluster
 cl <- makeForkCluster(5)
@@ -43,7 +43,11 @@ clusterCall(cl = cl, fun = function(i) {
 )
 
 # run updating procedure
-update_procedure <- OutDetectR::stretch_sample_updating()
+update_procedure <- OutDetectR::stretch_sample_updating(
+  cl = cl, new_observation = new_obj$data[[1]], list_path = '~/Documents/tmp_data/synth_data3.llo', 
+  lambda = 1.2, measuring_intervals = synth_ints, sample_size = sample_size, expn = 8, 
+  alpha = 0.05, B = 100, gamma = 0.05, num_samples_prev = test_procedure$num_samples, 
+  num_outliers_prev = test_procedure$num_outliers, debug = TRUE)
 
 stopCluster(cl)
 

@@ -184,8 +184,8 @@ generate_set_3 <- function(n_obs = 30000){
   
   # Find points of measurement for each observation
   # 0 and 1 are part of each grid to ensure identical measuring interval
-  grids <- purrr::map(.x = lengths,
-                      .f = function(l) c(0, sort(runif(n = l-2, min = 0, max = end_points[l])), end_points[l]))
+  grids <- purrr::map(.x = 1:length(lengths),
+                      .f = function(l) c(0, sort(runif(n = lengths[l]-2, min = 0, max = end_points[l])), end_points[l]))
   
   # Create observations
   functions <- map(.x = 1:n,
