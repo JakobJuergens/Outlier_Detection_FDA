@@ -22,7 +22,7 @@ sample_size <- 250
 test_obj <- readRDS(file = 'Results/synth_input3.RDS')
 
 # generate new observation
-new_obj <- generate_set_3(n_obs = 1)
+new_obj <- generate_set_3(n_obs = 1)$data[[1]]
 
 # get measuring intervals
 synth_ints <- OutDetectR::measuring_int_mat(test_obj$data)
@@ -44,7 +44,7 @@ clusterCall(cl = cl, fun = function(i) {
 
 # run updating procedure
 update_procedure <- OutDetectR::stretch_sample_updating(
-  cl = cl, new_observation = new_obj$data[[1]], list_path = '~/Documents/tmp_data/synth_data3.llo', 
+  cl = cl, new_observation = new_obj, list_path = '~/Documents/tmp_data/synth_data3.llo', 
   lambda = 1.2, measuring_intervals = synth_ints, sample_size = sample_size, expn = 8, 
   alpha = 0.05, B = 100, gamma = 0.05, num_samples_prev = test_procedure$num_samples, 
   num_outliers_prev = test_procedure$num_outliers, debug = TRUE)
