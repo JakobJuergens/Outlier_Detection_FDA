@@ -15,7 +15,8 @@ each observation is a list, that contains two vectors of identical length: args 
 the start and end points of the desired measuring interval}
 }
 \value{
-placeholder
+A list of functional observations in the usual format with the args element of
+each observation stretched to fit the chosen measuring interval
 }
 \description{
 This function is a wrapper around stretch_obs. It takes a set of functional

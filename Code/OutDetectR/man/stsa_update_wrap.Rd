@@ -2,7 +2,7 @@
 % Please edit documentation in R/updating.R
 \name{stsa_update_wrap}
 \alias{stsa_update_wrap}
-\title{placeholder}
+\title{Performs the updating procedure for one comparable measuring interval}
 \usage{
 stsa_update_wrap(
   cl,
@@ -41,8 +41,12 @@ included in the sampling procedure}
 \item{gamma:}{tuning parameter for smoothed bootstrap}
 }
 \value{
-placeholder
+A list containing three elements:
+num_samples: The number of samples each observation was part of (vector)
+num_outliers: The number of samples each observation was classified as an outlier in (vector)
+certainties: The quotient of num_outliers and num_samples (so the relative frequency of 
+observations being classified as outliers)
 }
 \description{
-placeholder
+Performs the updating procedure for one comparable measuring interval
 }

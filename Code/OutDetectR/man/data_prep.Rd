@@ -15,7 +15,7 @@ data_prep(path, min_length = 0, max_length = 200)
 \item{max_length:}{maximum permitted length of the endanzug}
 }
 \value{
-placeholder
+A data frame with the desired properties.
 }
 \description{
 This function can be used to transform the parquet object to a .RDS object

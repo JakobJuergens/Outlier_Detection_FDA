@@ -5,7 +5,7 @@
 #' @param min_length: minimum length of the endanzug
 #' @param max_length: maximum permitted length of the endanzug
 #'
-#' @return placeholder
+#' @return A data frame with the desired properties.
 #' @export
 data_prep <- function(path,
                       min_length = 0, max_length = 200) {

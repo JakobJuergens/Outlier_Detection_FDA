@@ -2,7 +2,8 @@
 % Please edit documentation in R/stretch_sample_wrap.R
 \name{stretch_sample_helper}
 \alias{stretch_sample_helper}
-\title{placeholder}
+\title{This function is a helper to stretch_sample_wrap() and performs the detection procedure for
+a single sample.}
 \usage{
 stretch_sample_helper(list_path, main_interval, ids, index, alpha, B, gamma)
 }
@@ -21,8 +22,9 @@ stretch_sample_helper(list_path, main_interval, ids, index, alpha, B, gamma)
 \item{gamma:}{tuning parameter for smoothed bootstrap}
 }
 \value{
-placeholder
+The output from detection_wrap for further usage.
 }
 \description{
-placeholder
+This function is a helper to stretch_sample_wrap() and performs the detection procedure for
+a single sample.
 }

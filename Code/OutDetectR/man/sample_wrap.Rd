@@ -2,7 +2,7 @@
 % Please edit documentation in R/sample_wrap.R
 \name{sample_wrap}
 \alias{sample_wrap}
-\title{placeholder}
+\title{Performs the sampling procedure on a data set.}
 \usage{
 sample_wrap(
   cl,
@@ -37,8 +37,12 @@ included in the sampling procedure}
 \item{gamma:}{tuning parameter for smoothed bootstrap}
 }
 \value{
-placeholder
+A list containing three elements:
+num_samples: The number of samples each observation was part of (vector)
+num_outliers: The number of samples each observation was classified as an outlier in (vector)
+certainties: The quotient of num_outliers and num_samples (so the relative frequency of 
+observations being classified as outliers)
 }
 \description{
-placeholder
+Performs the sampling procedure on a data set.
 }

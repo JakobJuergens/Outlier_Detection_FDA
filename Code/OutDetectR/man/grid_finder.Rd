@@ -15,7 +15,7 @@ grid_finder(func_dat, length.out = 100)
 \item{length.out:}{number of points in the grid}
 }
 \value{
-A vector that contains the grid points
+A vector that contains the grid points.
 }
 \description{
 This function creates a grid that is used for the piece wise linear

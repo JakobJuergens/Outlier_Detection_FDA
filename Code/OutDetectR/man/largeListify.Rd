@@ -14,7 +14,7 @@ each observation is a list, that contains two vectors of identical length: args 
 ending .llo}
 }
 \value{
-no return value
+Returns NULL.
 }
 \description{
 This function is a convenience wrapper around largeList::saveList

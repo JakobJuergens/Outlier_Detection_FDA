@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_sets.R
 \name{random_dat_1}
 \alias{random_dat_1}
-\title{Placeholder}
+\title{Generates one observation for test set 1}
 \usage{
 random_dat_1(grid, slope, out)
 }
@@ -11,12 +11,12 @@ random_dat_1(grid, slope, out)
 
 \item{slope:}{Slope parameter for the generated curves}
 
-\item{out:}{Vector conatining zeroes where no outlier should be generated 
+\item{out:}{Vector containing zeroes where no outlier should be generated 
 and ones where an outlier is generated}
 }
 \value{
-Placeholder
+A functional observation in the usual format
 }
 \description{
-Placeholder
+Generates one observation for test set 1
 }

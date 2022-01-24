@@ -11,7 +11,8 @@ measuring_int_mat(func_dat)
 \item{func_dat:}{a list, that contains two vectors of identical length: args and vals}
 }
 \value{
-A list of vectors containing two elements, the start and endpoints of the measuring intervals
+A length(func_dat)x2 matrix that contains in each row the measuring interval
+of the corresponding functional observation.
 }
 \description{
 This function is a wrapper around measuring_int_list and combines the intervals

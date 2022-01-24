@@ -2,7 +2,7 @@
 % Please edit documentation in R/updating.R
 \name{stretch_sample_updating}
 \alias{stretch_sample_updating}
-\title{placeholder}
+\title{Performs the full updating procedure on a data set and a new observation.}
 \usage{
 stretch_sample_updating(
   cl,
@@ -52,8 +52,12 @@ unique interval it is comparable to.}
 \item{debug:}{choose whether text outputs are given}
 }
 \value{
-placeholder
+A list containing three elements:
+num_samples: The number of samples each observation was part of (vector)
+num_outliers: The number of samples each observation was classified as an outlier in (vector)
+certainties: The quotient of num_outliers and num_samples (so the relative frequency of 
+observations being classified as outliers)
 }
 \description{
-placeholder
+Performs the full updating procedure on a data set and a new observation.
 }

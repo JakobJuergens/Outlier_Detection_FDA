@@ -11,7 +11,8 @@ sampling_factor <- function(n_comparables, sample_size, n_samples) {
   return(ceiling(sample_size / n_comparables * n_samples))
 }
 
-#' This function determines
+#' This function determines the number of samples that is necessary for each observation
+#' to appear a spefied number in expectation over all samples.
 #'
 #' @param n_comparables: Number of comparable observations
 #' @param sample_size: Chosen sample size for sampling procedure

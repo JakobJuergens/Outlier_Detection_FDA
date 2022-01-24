@@ -2,7 +2,7 @@
 % Please edit documentation in R/updating.R
 \name{stsa_update_helper}
 \alias{stsa_update_helper}
-\title{placeholder}
+\title{Performs the updating procedure for a single sample.}
 \usage{
 stsa_update_helper(
   list_path,
@@ -35,8 +35,8 @@ stsa_update_helper(
 \item{gamma:}{tuning parameter for smoothed bootstrap}
 }
 \value{
-placeholder
+The outlier_ids part from the detection_wrap function.
 }
 \description{
-placeholder
+Performs the updating procedure for a single sample.
 }

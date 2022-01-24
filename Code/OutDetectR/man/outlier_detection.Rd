@@ -33,7 +33,10 @@ outlier_detection(
 \item{C:}{should be provided. Otherwise C will be approximated in each step of the iteration}
 }
 \value{
-placeholder
+A list containing two elements:
+outlier_ids: the ids corresponding to the observations classified as outliers.
+outlier_inds: the indices (rownumbers) of the observations classified as outliers in the 
+provided data matrix
 }
 \description{
 This function serves as a wrapper for outlier_iteration and iterates the 

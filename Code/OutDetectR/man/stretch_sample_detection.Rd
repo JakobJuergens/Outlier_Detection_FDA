@@ -2,7 +2,7 @@
 % Please edit documentation in R/strech_sample_detection.R
 \name{stretch_sample_detection}
 \alias{stretch_sample_detection}
-\title{placeholder}
+\title{Performs the full stretching amd sampling procedure on a data set.}
 \usage{
 stretch_sample_detection(
   cl,
@@ -44,8 +44,12 @@ unique interval it is comparable to.}
 \item{debug:}{choose whether text outputs are given}
 }
 \value{
-placeholder
+A list containing three elements:
+num_samples: The number of samples each observation was part of (vector)
+num_outliers: The number of samples each observation was classified as an outlier in (vector)
+certainties: The quotient of num_outliers and num_samples (so the relative frequency of 
+observations being classified as outliers)
 }
 \description{
-placeholder
+Performs the full stretching amd sampling procedure on a data set.
 }

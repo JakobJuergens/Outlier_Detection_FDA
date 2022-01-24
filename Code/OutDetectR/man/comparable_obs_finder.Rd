@@ -2,7 +2,8 @@
 % Please edit documentation in R/Comparable.R
 \name{comparable_obs_finder}
 \alias{comparable_obs_finder}
-\title{Checks which measuring intervals are suitable to be compared to a given measuring interval.}
+\title{Checks which measuring intervals are suitable to be compared to a given measuring interval
+given an acceptable stretching parameter lambda.}
 \usage{
 comparable_obs_finder(main_interval, measuring_intervals, lambda, ids)
 }
@@ -21,5 +22,6 @@ comparable observations in the matrix measuring_intervals and ids, which contain
 the identifiers of the comparable observations
 }
 \description{
-Checks which measuring intervals are suitable to be compared to a given measuring interval.
+Checks which measuring intervals are suitable to be compared to a given measuring interval
+given an acceptable stretching parameter lambda.
 }

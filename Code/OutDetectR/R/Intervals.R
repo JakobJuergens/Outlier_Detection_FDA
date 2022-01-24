@@ -11,7 +11,7 @@ measuring_int <- function(func_obs){
   return(interval)                     
 }
 
-#' This function extracts the measuring interval from a set of functional observations.
+#' This function extracts the measuring intervals from a set of functional observations.
 #'
 #'@param func_dat: a list, that contains two vectors of identical length: args and vals
 #'
@@ -30,7 +30,8 @@ measuring_int_list <- function(func_dat){
 #'
 #'@param func_dat: a list, that contains two vectors of identical length: args and vals
 #'
-#'@return A list of vectors containing two elements, the start and endpoints of the measuring intervals
+#'@return A length(func_dat)x2 matrix that contains in each row the measuring interval
+#' of the corresponding functional observation.
 #'@export
 measuring_int_mat <- function(func_dat){
   # Extract Intervals from functional observation
@@ -51,7 +52,7 @@ measuring_int_mat <- function(func_dat){
 #' the measuring intervals of the observations
 #'
 #'@return A matrix containing the unique measuring intervals found 
-#' in the data set
+#' in the data set (one in each row).
 #'@export
 unique_intervals <- function(interval_matrix){
   

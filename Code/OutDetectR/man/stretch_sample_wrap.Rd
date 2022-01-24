@@ -2,7 +2,9 @@
 % Please edit documentation in R/stretch_sample_wrap.R
 \name{stretch_sample_wrap}
 \alias{stretch_sample_wrap}
-\title{placeholder}
+\title{Performs the stretching and sampling procedure on a specified subset of
+the data set. (Doesn't check for lambda compatibility, which is provided by the caller 
+function using the indices argument)}
 \usage{
 stretch_sample_wrap(
   cl,
@@ -38,8 +40,14 @@ included in the sampling procedure}
 \item{gamma:}{tuning parameter for smoothed bootstrap}
 }
 \value{
-placeholder
+A list containing three elements:
+num_samples: The number of samples each observation was part of (vector)
+num_outliers: The number of samples each observation was classified as an outlier in (vector)
+certainties: The quotient of num_outliers and num_samples (so the relative frequency of 
+observations being classified as outliers)
 }
 \description{
-placeholder
+Performs the stretching and sampling procedure on a specified subset of
+the data set. (Doesn't check for lambda compatibility, which is provided by the caller 
+function using the indices argument)
 }

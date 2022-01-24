@@ -14,7 +14,8 @@ stretch_obs(func_obs, measuring_interval)
 the start and end points of the desired measuring interval}
 }
 \value{
-placeholder
+A functional observation in the usual format with the args element of
+the list stretched to fit the chosen measuring interval
 }
 \description{
 This function takes a functional observation func_obs and stretches it to

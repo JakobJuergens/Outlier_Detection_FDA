@@ -17,7 +17,10 @@ outlier_iteration(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, C = NULL)
 \item{:}{C: should be provided. Otherwise C will be approximated in each step of the iteration}
 }
 \value{
-placeholder
+A list containing three objects:
+matr_data: a reduced matrix containing the observations not classified as outliers
+ids: the ids corresponding to the observations not classified as outliers
+outlier_ids: the ids corresponding to the observations classified as outliers
 }
 \description{
 This function performs one iteration of the algorithm, including the 

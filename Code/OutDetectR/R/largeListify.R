@@ -5,7 +5,7 @@
 #'@param path: path to where the file shall be saved, including a filename and the 
 #' ending .llo
 #'
-#'@return no return value
+#'@return Returns NULL.
 #'@export
 largeListify <- function(func_dat, path){
   tryCatch(
@@ -23,6 +23,7 @@ largeListify <- function(func_dat, path){
       message(cond)
     }
   )
+  return(NULL)
 }
 
 #' This function is a convenience wrapper around largeList::saveList and is 
@@ -33,7 +34,7 @@ largeListify <- function(func_dat, path){
 #'@param path: path to where the file shall be saved, including a filename and the 
 #' ending .llo
 #'
-#'@return no return value
+#'@return Returns NULL.
 #'@export
 append_obs <- function(func_obs, path){
   tryCatch(
@@ -51,4 +52,6 @@ append_obs <- function(func_obs, path){
       message(cond)
     }
   )
+  
+  return(NULL)
 }

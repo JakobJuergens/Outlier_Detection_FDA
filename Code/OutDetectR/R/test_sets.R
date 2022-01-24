@@ -1,11 +1,11 @@
-#' Placeholder
+#' Generates one observation for test set 1
 #'
 #' @param grid: Grid where the observations take palce
 #' @param slope: Slope parameter for the generated curves
-#' @param out: Vector conatining zeroes where no outlier should be generated 
+#' @param out: Vector containing zeroes where no outlier should be generated 
 #' and ones where an outlier is generated
 #'
-#' @return Placeholder
+#' @return A functional observation in the usual format
 random_dat_1 <- function(grid, slope, out) {
   args <- grid
   if (out == 0) {
@@ -20,11 +20,12 @@ random_dat_1 <- function(grid, slope, out) {
   ))
 }
 
-#' Placeholder
+#' Generates a data set containing a chosen number of observations
+#' as described for test set 1
 #'
 #' @param n_obs: number of observations to be generated
 #'
-#' @return Placeholder
+#' @return A list of functional observations in the usual format.
 #' @export
 generate_set_1 <- function(n_obs = 500) {
 
@@ -58,13 +59,13 @@ generate_set_1 <- function(n_obs = 500) {
   return(list(data = functions, ids = ids, outliers = which(outliers == 1)))
 }
 
-#' Placeholder
+#' Generates one observation for test set 2
 #'
 #' @param grid: Grid where the observations take palce
 #' @param slope: Slope parameter for the generated curves
-#' @param out: Vector conatining zeroes where no outlier should be generated 
+#' @param out: Vector containing zeroes where no outlier should be generated 
 #'
-#' @return Placeholder
+#' @return A functional observation in the usual format
 random_dat_2 <- function(grid, slope, out){
   args <- grid
   if(out == 0){
@@ -90,11 +91,12 @@ random_dat_2 <- function(grid, slope, out){
               vals = vals))
 }
 
-#' Placeholder
+#' Generates a data set containing a chosen number of observations
+#' as described for test set 2
 #'
 #' @param n_obs: number of observations to be generated
 #'
-#' @return Placeholder
+#' @return A list of functional observations in the usual format.
 #' @export
 generate_set_2 <- function(n_obs = 10000){
   
@@ -123,13 +125,13 @@ generate_set_2 <- function(n_obs = 10000){
   return(list(data = functions, ids = ids, outliers = which(outliers != 0)))                 
 }
 
-#' Placeholder
+#' Generates one observation for test set 3
 #'
 #' @param grid: Grid where the observations take palce
 #' @param slope: Slope parameter for the generated curves
-#' @param out: Vector conatining zeroes where no outlier should be generated 
+#' @param out: Vector containing zeroes where no outlier should be generated 
 #'
-#' @return Placeholder
+#' @return A functional observation in the usual format
 random_dat_3 <- function(grid, slope, out){
   args <- grid
   if(out == 0){
@@ -155,11 +157,12 @@ random_dat_3 <- function(grid, slope, out){
               vals = vals))
 }
 
-#' Placeholder
+#' Generates a data set containing a chosen number of observations
+#' as described for test set 3
 #'
 #' @param n_obs: number of observations to be generated
 #'
-#' @return Placeholder
+#' @return A list of functional observations in the usual format.
 #' @export
 generate_set_3 <- function(n_obs = 30000){
   

@@ -8,7 +8,7 @@
 #' @param gamma: tuning parameter for smoothed bootstrap
 #' @param grid: grid used in approximation of matr_dat
 #'
-#' @return placeholder
+#' @return Returns the approximation of the cutoff value C.
 approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
 
   # set smoothing mode to on
@@ -84,7 +84,10 @@ approx_C <- function(matr_dat, fdepths, alpha, B, gamma, grid) {
 #' @param: grid: grid used in approximation of matr_dat
 #' @param: C: should be provided. Otherwise C will be approximated in each step of the iteration
 #'
-#' @return placeholder
+#' @return A list containing three objects:
+#' matr_data: a reduced matrix containing the observations not classified as outliers
+#' ids: the ids corresponding to the observations not classified as outliers
+#' outlier_ids: the ids corresponding to the observations classified as outliers
 outlier_iteration <- function(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, C = NULL) {
 
   # Calculating functional depths using a function from ./auxiliary/Rcpp_functions.cpp
@@ -121,7 +124,10 @@ outlier_iteration <- function(matr_dat, alpha = 0.05, B = 50, gamma, ids, grid, 
 #' @param grid: grid used in approximation of matr_dat
 #' @param C: should be provided. Otherwise C will be approximated in each step of the iteration
 #'
-#' @return placeholder
+#' @return A list containing two elements:
+#' outlier_ids: the ids corresponding to the observations classified as outliers.
+#' outlier_inds: the indices (rownumbers) of the observations classified as outliers in the 
+#' provided data matrix
 #' @export
 outlier_detection <- function(matr_dat, alpha = 0.05, B = 100, gamma = 0.05, ids, grid, C = NULL) {
   tmp_ids <- ids

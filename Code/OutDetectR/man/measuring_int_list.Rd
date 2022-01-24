@@ -2,7 +2,7 @@
 % Please edit documentation in R/Intervals.R
 \name{measuring_int_list}
 \alias{measuring_int_list}
-\title{This function extracts the measuring interval from a set of functional observations.}
+\title{This function extracts the measuring intervals from a set of functional observations.}
 \usage{
 measuring_int_list(func_dat)
 }
@@ -13,5 +13,5 @@ measuring_int_list(func_dat)
 A list of vectors containing two elements, the start and endpoints of the measuring intervals
 }
 \description{
-This function extracts the measuring interval from a set of functional observations.
+This function extracts the measuring intervals from a set of functional observations.
 }

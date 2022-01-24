@@ -2,7 +2,8 @@
 % Please edit documentation in R/updating.R
 \name{possible_occurences}
 \alias{possible_occurences}
-\title{Placeholder}
+\title{This function decides which measuring intervals are suitable to be compared 
+to a given new observation}
 \usage{
 possible_occurences(func_obs, unique_intervals, lambda)
 }
@@ -13,6 +14,13 @@ possible_occurences(func_obs, unique_intervals, lambda)
 
 \item{lambda:}{acceptable stretching parameter}
 }
+\value{
+A list containing two elements
+occurs: the indices (rownumbers) of the intervals that are comparable 
+to the given functional observation
+occurs_intervals: the matrix containing only the comparable intervals
+}
 \description{
-Placeholder
+This function decides which measuring intervals are suitable to be compared 
+to a given new observation
 }

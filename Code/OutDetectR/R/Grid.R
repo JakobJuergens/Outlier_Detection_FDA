@@ -6,7 +6,7 @@
 #' @param func_dat: Data used by functional procedures
 #' @param length.out: number of points in the grid
 #'
-#' @return A vector that contains the grid points
+#' @return A vector that contains the grid points.
 #' @export
 grid_finder <- function(func_dat, length.out = 100) {
 

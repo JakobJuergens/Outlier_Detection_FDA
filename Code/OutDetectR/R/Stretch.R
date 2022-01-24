@@ -5,7 +5,8 @@
 #' @param measuring_interval: a vector with 2 elements,
 #' the start and end points of the desired measuring interval
 #'
-#' @return placeholder
+#' @return A functional observation in the usual format with the args element of
+#' the list stretched to fit the chosen measuring interval
 #' @export
 stretch_obs <- function(func_obs, measuring_interval) {
 
@@ -34,7 +35,8 @@ stretch_obs <- function(func_obs, measuring_interval) {
 #' @param measuring_interval: a vector with 2 elements,
 #' the start and end points of the desired measuring interval
 #'
-#' @return placeholder
+#' @return A list of functional observations in the usual format with the args element of
+#' each observation stretched to fit the chosen measuring interval
 #' @export
 stretch_data <- function(func_dat, measuring_interval) {
 

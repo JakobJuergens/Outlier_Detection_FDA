@@ -1,4 +1,5 @@
-#' Checks which measuring intervals are suitable to be compared to a given measuring interval.
+#' Checks which measuring intervals are suitable to be compared to a given measuring interval
+#' given an acceptable stretching parameter lambda.
 #'
 #'@param main_interval: vector of two elements: starting and end point of measuring interval
 #'@param measuring_intervals: use output from measuring_int_mat

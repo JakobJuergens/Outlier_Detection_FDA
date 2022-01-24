@@ -2,7 +2,8 @@
 % Please edit documentation in R/sample_wrap.R
 \name{sample_helper}
 \alias{sample_helper}
-\title{placeholder}
+\title{This function is a helper to sample_wrap() and performs the detection procedure for
+a single sample.}
 \usage{
 sample_helper(list_path, ids, index, alpha, B, gamma)
 }
@@ -18,8 +19,9 @@ sample_helper(list_path, ids, index, alpha, B, gamma)
 \item{gamma:}{tuning parameter for smoothed bootstrap}
 }
 \value{
-placeholder
+ids from the output of detection_wrap
 }
 \description{
-placeholder
+This function is a helper to sample_wrap() and performs the detection procedure for
+a single sample.
 }

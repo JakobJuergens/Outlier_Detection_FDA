@@ -2,7 +2,8 @@
 % Please edit documentation in R/sampling_auxiliary.R
 \name{sampling_number}
 \alias{sampling_number}
-\title{This function determines}
+\title{This function determines the number of samples that is necessary for each observation
+to appear a spefied number in expectation over all samples.}
 \usage{
 sampling_number(n_comparables, sample_size, expn)
 }
@@ -19,5 +20,6 @@ A number that's used as the number of samples drawn in each
 sampling step.
 }
 \description{
-This function determines
+This function determines the number of samples that is necessary for each observation
+to appear a spefied number in expectation over all samples.
 }

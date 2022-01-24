@@ -2,7 +2,8 @@
 % Please edit documentation in R/test_sets.R
 \name{generate_set_3}
 \alias{generate_set_3}
-\title{Placeholder}
+\title{Generates a data set containing a chosen number of observations
+as described for test set 3}
 \usage{
 generate_set_3(n_obs = 30000)
 }
@@ -10,8 +11,9 @@ generate_set_3(n_obs = 30000)
 \item{n_obs:}{number of observations to be generated}
 }
 \value{
-Placeholder
+A list of functional observations in the usual format.
 }
 \description{
-Placeholder
+Generates a data set containing a chosen number of observations
+as described for test set 3
 }

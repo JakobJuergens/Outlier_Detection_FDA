@@ -21,7 +21,7 @@ approx_C(matr_dat, fdepths, alpha, B, gamma, grid)
 \item{grid:}{grid used in approximation of matr_dat}
 }
 \value{
-placeholder
+Returns the approximation of the cutoff value C.
 }
 \description{
 Uses a bootstrapping procedure to approximate the cutoff value for the identification
