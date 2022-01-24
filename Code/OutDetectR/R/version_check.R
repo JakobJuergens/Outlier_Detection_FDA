@@ -1,5 +1,5 @@
 #' Does nothing but print out a chosen integer
 #' @export
 version_check <- function(){
-  print(33)
+  print(34)
 }

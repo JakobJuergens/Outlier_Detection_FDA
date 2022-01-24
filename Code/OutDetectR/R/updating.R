@@ -193,12 +193,30 @@ stretch_sample_updating <- function(cl, new_observation, list_path, lambda, meas
 
   # find measuring intervals the new observation could have appeared in
   # during the sampling process
-  unique_possible_intervals <- possible_occurences(
+  occurs <- possible_occurences(
     func_obs = new_observation, unique_intervals = unique_intervals, lambda = lambda
-  )$occurs_intervals
+  )$occurs
 
-  ### Fall einbauen, falls es keine vergleichbaren Intervalle gibt!
-
+  # Include case if there are no comparable intervals
+  if(length(occurs) == 0){
+    # in this case there are no other observations with a comparable 
+    # measuring interval
+    
+    # create output vectors
+    num_samples <- c(num_samples_prev, 0)
+    num_outliers <- c(num_outliers_prev, 0)
+    frac_outliers <- c((num_outliers_prev / num_samples_prev), 1)
+    
+    return(list(
+      num_samples = num_samples,
+      num_outliers = num_outliers,
+      certainties = frac_outliers
+    ))
+  }
+  
+  # create matrix of comparable intervals
+  unique_possible_intervals = unique_intervals[occurs, ]
+  
   # find number of possible intervals
   n_unique_int <- dim(unique_possible_intervals)[1]
 
