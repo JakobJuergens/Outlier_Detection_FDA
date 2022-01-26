@@ -15,7 +15,7 @@ The algorithm implemented in Project_main.ipynb was taken from:
 Febrero, M., Galeano, P. and González-Manteiga, W. (2008), Outlier detection in functional data by depth measures, with application to identify abnormal NOx levels. 
 Environmetrics, 19: 331-345. https://doi.org/10.1002/env.878
 
-The method is explained an implemented in the Jupyter Notebook Project_Main.ipynb, which can be accessed using the following badges. All visualizations are done using a shiny app, that is separate from the Notebook.
+The method is explained an implemented in the Jupyter Notebook Project_Main.ipynb, which can be accessed using the following badge. All visualizations are done using a shiny app, that is separate from the Notebook.
 
 <a href="https://nbviewer.jupyter.org/github/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/blob/master/Project_Main.ipynb"
    target="_parent">
@@ -24,13 +24,7 @@ The method is explained an implemented in the Jupyter Notebook Project_Main.ipyn
       width="109" height="20">
 </a>
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb)
-
-Even though I recommend using it locally due to a lengthy building time of the environment in Binder, the shiny app can be started using this badge:
-
-RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/)
-
-In case the page shows something like "shiny took too long to load", reload the page and it will work. The build process does not have to be repeated in that case.
+The shiny app should be executed locally, which can be done by executing the script app.R in the main directory of the repository.
 
 ## Acknowledgements
 I want to thank a few people that either helped in making this project possible or aided me in some other way.
