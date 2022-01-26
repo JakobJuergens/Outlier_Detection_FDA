@@ -16,7 +16,7 @@ jobs:
       with:
         activate-environment: student_project
         environment-file: environment.yml
-        python-version: 3.6
+        python-version: 3.8
         auto-activate-base: false   
     - name: path export and IRkernel
       shell: bash -l {0}
