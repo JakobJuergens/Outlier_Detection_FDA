@@ -9,11 +9,11 @@ set_1_tibble <- readRDS(file = "./data/Set_1/shiny_tibble.RDS")
 
 # set 2:
 set_2_tibble <- readRDS(file = "data/Set_2/shiny_tibble.RDS")
-set_2_summary <- list(original = readRDS(file = "data/Set_2/outliers.RDS"))
+set_2_summary <- list(original = unique(set_2_tibble$ids[which(set_2_tibble$outlier == TRUE)]))
 
 # set 3:
 set_3_tibble <- readRDS(file = "data/Set_3/shiny_tibble.RDS")
-set_3_summary <- list(original = readRDS(file = "data/Set_3/outliers.RDS"))
+set_3_summary <- list(original = unique(set_3_tibble$ids[which(set_3_tibble$outlier == TRUE)]))
 
 header <- dashboardHeader(
   title = "Outlier Detection"
