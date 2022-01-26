@@ -24,5 +24,6 @@ jobs:
         export PATH="$PATH:/usr/share/miniconda/bin"
         conda activate student_project 
         R -e "IRkernel::installspec()"
+        R -e "install.packages('~/Code/OutDetectR_1.0.tar.gz', repos = NULL, type = 'source')"
         jupyter nbconvert --to html --execute --ExecutePreprocessor.timeout=120 Project_Main.ipynb
       
