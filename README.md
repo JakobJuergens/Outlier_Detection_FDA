@@ -14,18 +14,18 @@ Environmetrics, 19: 331-345. https://doi.org/10.1002/env.878
 
 The method is explained an implemented in the Jupyter Notebook Project_Main.ipynb, which can be accessed using the following badges. All visualizations are done using a shiny app, that is separate from the Notebook.
 
-<a href="https://nbviewer.jupyter.org/github/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/blob/master/Project_Main.ipynb"
+<a href="https://nbviewer.jupyter.org/github/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/blob/master/Project_Main.ipynb"
    target="_parent">
    <img align="center"
   src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.png"
       width="109" height="20">
 </a>
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb)
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb)
 
 Even though I recommend using it locally due to a lengthy building time of the environment in Binder, the shiny app can be started using this badge:
 
-RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenSourceEconomics/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/) 
+RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/)
 
 In case the page shows something like "shiny took too long to load", reload the page and it will work. The build process does not have to be repeated in that case.
 
