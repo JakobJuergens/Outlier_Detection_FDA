@@ -2,6 +2,9 @@
 
 This is the final project of the OSE Data Science course (summer semester 2021) and the OSE Scientific Computing course (winter semester 2021/2022) by Jakob R. Jürgens.
 
+![example workflow](https://github.com/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/actions/workflows/ci.yml/badge.svg)
+
+
 ## Project overview
 The main focus of this project is to develop a procedure to identify abnormal observations in sensor data collected during production processes. Each data point can be interpreted as a set of points where a function was observed.
 Therefore the whole problem can be approached from a standpoint of outlier classification in functional data - An approach which I chose as the basis of my project.
