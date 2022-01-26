@@ -24,11 +24,11 @@ The method is explained an implemented in the Jupyter Notebook Project_Main.ipyn
       width="109" height="20">
 </a>
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/main?filepath=Project_Main.ipynb)
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/master?filepath=Project_Main.ipynb)
 
 Even though I recommend using it locally due to a lengthy building time of the environment in Binder, the shiny app can be started using this badge:
 
-RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/main?urlpath=shiny/)
+RShiny: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JakobJuergens/ose-data-science-course-projeect-JakobJuergens/master?urlpath=shiny/)
 
 In case the page shows something like "shiny took too long to load", reload the page and it will work. The build process does not have to be repeated in that case.
 
