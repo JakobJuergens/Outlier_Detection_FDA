@@ -2,7 +2,7 @@
 % Please edit documentation in R/strech_sample_detection.R
 \name{stretch_sample_detection}
 \alias{stretch_sample_detection}
-\title{Performs the full stretching amd sampling procedure on a data set.}
+\title{Performs the full stretching and sampling procedure on a data set.}
 \usage{
 stretch_sample_detection(
   cl,
@@ -51,5 +51,5 @@ certainties: The quotient of num_outliers and num_samples (so the relative frequ
 observations being classified as outliers)
 }
 \description{
-Performs the full stretching amd sampling procedure on a data set.
+Performs the full stretching and sampling procedure on a data set.
 }
