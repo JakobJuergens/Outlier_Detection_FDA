@@ -46,4 +46,5 @@ real_plot <- ggplot(data = plot_tibble) +
   theme_light() +
   theme(legend.position="bottom")
 
-ggsave(filename = 'real_data_plot.png', plot = real_plot, path = '../../material/')
+ggsave(filename = 'real_data_plot.png', plot = real_plot, path = '../../material/',
+       width = 12, height = 8, units = 'in')
