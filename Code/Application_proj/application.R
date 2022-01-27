@@ -65,7 +65,6 @@ unique_intervals <- OutDetectR::unique_intervals(test_ints)
 OutDetectR::largeListify(
   func_dat = test_data_zero,
   path = '~/Documents/tmp_data/test_data.llo'
-    #paste0(endanzug_path, "test_red_data.llo")
 )
 
 ### Use Sampling procedure for reduced data set
