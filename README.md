@@ -37,7 +37,7 @@ The repository does include three synthetic demonstration datasets under [`data/
 
 R is the principal environment; the notebook metadata records an R 3.6.1 kernel, and parts of `OutDetectR` use Rcpp. Run the notebook from the repository root so its relative paths resolve. The Shiny app can be launched from the same location with `shiny::runApp(".")` or by executing [`app.R`](app.R). Package-style code resides in [`Code/OutDetectR/`](Code/OutDetectR/), and the notebook installs the archived source package from [`Code/OutDetectR_1.0.tar.gz`](Code/OutDetectR_1.0.tar.gz).
 
-Dependencies are listed in [`environment.yml`](environment.yml) and in the package [`DESCRIPTION`](Code/OutDetectR/DESCRIPTION), but their versions are largely unpinned. This archival documentation pass did not comprehensively modernize or revalidate the notebook, package, compiled artifacts, CI workflow, or Shiny app under current R and package versions.
+Dependencies are listed in [`environment.yml`](environment.yml) and in the package [`DESCRIPTION`](Code/OutDetectR/DESCRIPTION), but their versions are largely unpinned. This archival documentation pass did not comprehensively modernize or revalidate the notebook, package, compiled artifacts, or Shiny app under current R and package versions.
 
 ## Acknowledgements
 

@@ -4,3 +4,11 @@ __pxcache__/
 .ipynb_checkpoints/
 *.html
 .Rproj.user
+
+# R session files
+.Rhistory
+.RData
+.Ruserdata
+
+# Local environment helpers
+.envrc
